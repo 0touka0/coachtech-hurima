@@ -16,12 +16,24 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name'     => 'テスター',
-            'email'    => 'tester@example.com',
-            'password' => Hash::make('testerexample'),
+            [
+            'name' => '出品者',
+            'email' => 'seller@example.com',
+            'password' => Hash::make('sellerexample'),
+            'image_path' => null,
             'postal_code' => '123-4567',
             'address' => '大阪府大阪市北区梅田1-2-3',
             'building_name' => 'グランフロント梅田タワーオフィスB棟10F',
+            ],
+            [
+                'name' => 'ゲスト',
+                'email' => 'guest@example.com',
+                'password' => Hash::make('guestexample'),
+                'image_path' => null,
+                'postal_code' => '345-6789',
+                'address' => '大阪府大阪市北区梅田3-4-5',
+                'building_name' => 'グランフロント梅田タワーオフィスA棟5F',
+            ]
         ]);
     }
 }

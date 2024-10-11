@@ -20,4 +20,12 @@ RUN composer create-project "laravel/laravel=8.*" . --prefer-dist
 # StripeのPHP SDKをインストール
 RUN composer require stripe/stripe-php
 
+# Dockerfileの中でユーザー名、UID、GIDを設定
+ARG USERNAME
+ARG UID
+ARG GID
+
+RUN groupadd -g ${GID} ${USERNAME} \
+  && useradd -m -u ${UID} -g ${GID} ${USERNAME}
+
 WORKDIR /var/www

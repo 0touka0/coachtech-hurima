@@ -10,6 +10,7 @@ class Item extends Model
     use HasFactory;
 
     protected $fillable = [
+        'seller_id',
         'name',
         'price',
         'description',
@@ -17,25 +18,31 @@ class Item extends Model
         'condition',
     ];
 
-    // アイテムの売買履歴
-    public function transactions()
+    // 商品の売り手
+    public function seller()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->belongsTo(User::class, 'seller_id');
     }
 
-    // アイテムに対するコメント
+    // 商品の購入履歴
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
+
+    // 商品に対するコメント
     public function itemComments()
     {
         return $this->hasMany(ItemComment::class);
     }
 
-    // アイテムのお気に入り
+    // 商品のお気に入り
     public function myLists()
     {
-        return $this->hasMany(MyList::class);
+        return $this->hasMany(Mylist::class);
     }
 
-    // アイテムのカテゴリ（多対多リレーション）
+    // 商品のカテゴリ（多対多リレーション）
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'categorizations');

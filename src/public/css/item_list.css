@@ -1,0 +1,62 @@
+/* 商品のリスト全体のスタイル */
+.item-content {
+	padding: 50px;
+}
+
+.item-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: flex-start; /* 左から順番に並べる */
+}
+
+/* 商品カードのスタイル */
+.item-card {
+	width: calc(25% - 15px); /* 1行4つに分けるために幅を25%に調整 */
+	transition: transform 0.2s;
+}
+
+.item-card:hover {
+	transform: translateY(-5px); /* カードが浮き上がるようなホバー効果 */
+}
+
+.item-card__content {
+	text-decoration: none;
+}
+
+/* 商品画像部分 */
+.item-card__image-wrapper {
+	position: relative;
+	width: 100%;
+	padding-top: 100%; /* 正方形にするための設定 */
+	overflow: hidden;
+}
+
+.item-card__image-wrapper img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover; /* 画像を正方形に収める */
+}
+
+/* SOLDラベルのスタイル */
+.item-card__sold-label {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background-color: red;
+	color: white;
+	padding: 5px 10px;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+/* 商品名のスタイル */
+.item-card__title {
+	display: block;
+	padding-top: 5px;
+	font-size: 20px;
+	color: #000;
+}

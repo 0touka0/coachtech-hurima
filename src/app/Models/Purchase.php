@@ -5,26 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Purchase extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'item_id',
-        'seller_id',
         'buyer_id',
+        'payment_method',
+        'delivery_postal_code',
+        'delivery_address',
+        'delivery_building_name',
     ];
 
     // この取引に関連するアイテム
     public function item()
     {
         return $this->belongsTo(Item::class);
-    }
-
-    // この取引の売り手
-    public function seller()
-    {
-        return $this->belongsTo(User::class, 'seller_id');
     }
 
     // この取引の買い手

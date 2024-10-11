@@ -1,0 +1,134 @@
+/* ページ全体 */
+.sell-page {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	font-family: Arial, sans-serif;
+}
+
+/* ヘッダー */
+.sell-header {
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+/* 商品画像セクション */
+.sell-item-image {
+	margin-bottom: 30px;
+}
+
+.sell-item-image__title {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.sell-item-image__form {
+	border: 2px dashed #FF5555;
+	border-radius: 5px;
+	padding: 20px;
+	text-align: center;
+}
+
+.image-form__image {
+	max-width: 100%;
+	margin-bottom: 10px;
+}
+
+.image-form__btn {
+	background-color: white;
+	border: 2px solid #FF5555;
+	color: #FF5655;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: all 0.3s ease;
+}
+
+.image-form__btn:hover {
+	background-color: #FF5555;
+	color: white;
+}
+
+/* 商品の詳細セクション */
+.sell-item-detail__title {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.sell-item-category {
+	margin-bottom: 20px;
+}
+
+.sell-item-category__buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.category-checkbox {
+	display: none; /* チェックボックスを非表示 */
+}
+
+.category-label {
+	padding: 10px 20px;
+	border: 2px solid #FF5555;
+	border-radius: 30px;
+	color: #FF5655;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.category-checkbox:checked + .category-label {
+	background-color: #FF5555;
+	color: white;
+}
+
+/* 商品状態ドロップダウン */
+.sell-item-status__title {
+	margin-bottom: 10px;
+}
+
+.sell-item-status__dropdown {
+	width: 100%;
+	padding: 10px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+
+/* 商品名、説明、価格 */
+.sell-item-name__title,
+.sell-item-description label,
+.sell-item-price label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.sell-item-name input,
+.sell-item-description textarea,
+.sell-item-price input {
+	width: 100%;
+	padding: 10px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+
+/* 出品ボタン */
+.sell-form__btn {
+	width: 100%;
+	padding: 15px;
+	background-color: #FF5555;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s ease;
+}

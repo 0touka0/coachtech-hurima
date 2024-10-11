@@ -18,5 +18,4 @@ class Category extends Model
     {
         return $this->belongsToMany(Item::class, 'categorizations');
     }
-
 }

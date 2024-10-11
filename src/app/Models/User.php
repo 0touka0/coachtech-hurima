@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image_path',
+        'postal_code',
+        'address',
+        'building_name',
     ];
 
     /**
@@ -42,16 +46,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // ユーザーが売った取引
-    public function soldTransactions()
+    // ユーザーが売った商品
+    public function Items()
     {
-        return $this->hasMany(Transaction::class, 'seller_id');
+        return $this->hasMany(Item::class, 'seller_id');
     }
 
-    // ユーザーが買った取引
-    public function boughtTransactions()
+    // ユーザーが購入した履歴
+    public function purchases()
     {
-        return $this->hasMany(Transaction::class, 'buyer_id');
+        return $this->hasMany(Purchase::class, 'buyer_id');
     }
 
     // ユーザーのコメント
