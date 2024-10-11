@@ -35,6 +35,6 @@ class ItemController extends Controller
         // 購入済み商品のIDを取得
         $soldItemIds = Purchase::pluck('item_id')->toArray();
 
-        return view('item_list', compact('tab', 'items', 'soldItemIds'));
+        return view('item/list', compact('tab', 'items', 'soldItemIds'));
     }
 }

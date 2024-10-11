@@ -14,7 +14,7 @@ class PurchaseController extends Controller
         $user = Auth::user();
         $item = Item::find($item_id);
 
-        return view('purchase/item_purchase', compact('user','item'));
+        return view('item/purchase_form', compact('user','item'));
     }
 
     public function store(PurchaseRequest $request)

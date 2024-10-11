@@ -1,5 +1,9 @@
 @extends('layouts/app')
 
+@section('css')
+	<link rel="stylesheet" href="{{ asset('css/item/purchase_form.css') }}">
+@endsection
+
 @section('main')
     <div class="purchase-page">
         <form action="{{ route('purchase.store') }}" method="POST">

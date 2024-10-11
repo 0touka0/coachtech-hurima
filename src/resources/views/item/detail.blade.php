@@ -1,6 +1,7 @@
 @extends('layouts/app')
 
 @section('css')
+	<link rel="stylesheet" href="{{ asset('css/item/detail.css') }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 

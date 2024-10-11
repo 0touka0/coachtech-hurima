@@ -22,7 +22,7 @@ class ItemDetailController extends Controller
                                       ->where('is_favorited', true)
                                       ->exists();
 
-        return view('item/item_detail', compact('item', 'isFavorited', 'comments', 'user'));
+        return view('item/detail', compact('item', 'isFavorited', 'comments', 'user'));
     }
 
     // マイリスト登録

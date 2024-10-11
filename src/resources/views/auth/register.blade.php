@@ -1,5 +1,9 @@
 @extends('layouts/auth_app')
 
+@section('css')
+	<link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
+@endsection
+
 @section('main')
 	<div class="register-page">
 		<h1 class="register-page__header">会員登録</h1>

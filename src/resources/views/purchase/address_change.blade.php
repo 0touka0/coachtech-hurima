@@ -1,5 +1,9 @@
 @extends('layouts/app')
 
+@section('css')
+	<link rel="stylesheet" href="{{ asset('css/purchase/address_change.css') }}">
+@endsection
+
 @section('main')
 	<div class="address-change-page">
 		<h1 class="address-change-page__header">住所の変更</h1>

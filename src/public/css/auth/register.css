@@ -1,0 +1,86 @@
+.register-page {
+	max-width: 100%;
+	padding-top: 100px;
+	height: 680px;
+}
+
+.register-page__header {
+	font-size: 32px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.register-form {
+	width: 48%;
+	margin: 50px auto 0;
+}
+
+.register-form__group {
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.register-form__label {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.register-form__input {
+	width: 100%;
+	line-height: 45px;
+	padding: 0 10px;
+	border: solid 1px #5f5f5f;
+	border-radius: 4px;
+}
+
+.register-form__btn {
+	width: 100%;
+	line-height: 55px;
+	margin: 30px 0 25px;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.nav {
+	text-align: center;
+}
+
+.nav__link {
+	text-decoration: none;
+	color: #0073CC;
+}
+
+/* タブレットサイズ（768px〜850px）対応 */
+@media (max-width: 851px) {
+	.register-form {
+		width: 80%;  /* タブレットのときに横幅を調整 */
+	}
+
+	.register-page__header {
+		font-size: 28px; /* 見出しサイズを少し小さくする */
+	}
+
+	.register-form__btn {
+		font-size: 18px; /* ボタンのテキストサイズを調整 */
+	}
+}
+
+/* スマホサイズ（768px以下）対応 */
+@media (max-width: 768px) {
+	.register-form {
+		width: 80%;  /* スマホのときはさらに幅を広げる */
+	}
+
+	.register-form__label,
+	.register-form__btn {
+		font-size: 16px;  /* テキストをもう少し小さくして、画面に収まるように */
+	}
+
+	.register-form__input {
+		line-height: 40px;  /* 入力欄の高さも調整するよ */
+	}
+
+	.register-form__btn {
+		line-height: 50px;  /* ボタンの高さも調整 */
+	}
+}

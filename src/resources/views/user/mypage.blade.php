@@ -1,5 +1,9 @@
 @extends('layouts/app')
 
+@section('css')
+	<link rel="stylesheet" href="{{ asset('css/user/mypage.css') }}">
+@endsection
+
 @section('main')
 	<div class="mypage">
 		<!-- ユーザー名 -->
