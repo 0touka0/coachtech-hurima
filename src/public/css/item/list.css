@@ -1,18 +1,52 @@
+.item-list-page {
+	padding-top: 40px;
+}
+
+/* タブ */
+.tabs-container {
+	width: 100%;
+}
+
+.tabs {
+	display: flex;
+	list-style-type: none;
+	padding-left: 190px;
+	padding-bottom: 5px;
+	border-bottom: solid 2px #5F5F5F;
+}
+
+.tabs-list:first-of-type {
+	margin-right: 85px;
+}
+
+.tab-link {
+	text-decoration: none;
+	font-size: 22px;
+	font-weight: bold;
+	color: #5F5F5F;
+}
+
+.is-active {
+	color: #FF0000;
+}
+
 /* 商品のリスト全体のスタイル */
 .item-content {
-	padding: 50px;
+	padding-top: 80px;
 }
 
 .item-list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 20px;
-	justify-content: flex-start; /* 左から順番に並べる */
+	gap: 70px;
+	max-width: 1370px;
+	margin: 0 auto;
 }
 
 /* 商品カードのスタイル */
 .item-card {
-	width: calc(25% - 15px); /* 1行4つに分けるために幅を25%に調整 */
+	width: 290px; /* 幅固定 */
+	height: 320px; /* 高さ固定 */
 	transition: transform 0.2s;
 }
 
@@ -20,7 +54,7 @@
 	transform: translateY(-5px); /* カードが浮き上がるようなホバー効果 */
 }
 
-.item-card__content {
+.item-card__link {
 	text-decoration: none;
 }
 
@@ -29,10 +63,11 @@
 	position: relative;
 	width: 100%;
 	padding-top: 100%; /* 正方形にするための設定 */
+	border-radius: 4px;
 	overflow: hidden;
 }
 
-.item-card__image-wrapper img {
+.item-card__image {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -42,7 +77,7 @@
 }
 
 /* SOLDラベルのスタイル */
-.item-card__sold-label {
+.item-card__image--sold {
 	position: absolute;
 	top: 10px;
 	left: 10px;
@@ -59,4 +94,5 @@
 	padding-top: 5px;
 	font-size: 20px;
 	color: #000;
+	text-decoration: none;
 }

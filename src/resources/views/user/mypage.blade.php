@@ -8,8 +8,12 @@
 	<div class="mypage">
 		<!-- ユーザー名 -->
 		<div class="mypage-info">
-			<div class="mypage-info__img">
-				<img src="{{ $user->image_path }}" alt="プロフィール画像">
+			<div class="mypage-info__image-wrapper">
+				@if ($user->image_path)
+					<img src="{{ $user->image_path }}" alt="プロフィール画像" class="mypage-info__image">
+				@else
+					<div class="mypage-info__default-image"></div> <!-- グレーの丸を表示 -->
+				@endif
 			</div>
 			<h1 class="mypage-info__name">{{ $user->name }}</h1>
 			<a href="{{ route('profile.edit') }}" class="mypage-info__link">プロフィール編集</a>
@@ -18,8 +22,8 @@
 		<!-- タブメニュー -->
 		<div class="tabs-container">
 			<ul class="tabs">
-				<li><a href="/mypage?tab=sell" class="tab-link {{ $tab === 'sell' ? 'is-active' : '' }}">出品した商品</a></li>
-				<li><a href="/mypage?tab=buy" class="tab-link {{ $tab === 'buy' ? 'is-active' : '' }}">購入した商品</a></li>
+				<li class="tabs-list"><a href="/mypage?tab=sell" class="tab-link {{ $tab === 'sell' ? 'is-active' : '' }}">出品した商品</a></li>
+				<li class="tabs-list"><a href="/mypage?tab=buy" class="tab-link {{ $tab === 'buy' ? 'is-active' : '' }}">購入した商品</a></li>
 			</ul>
 		</div>
 
@@ -30,7 +34,7 @@
 					<div class="item-card">
 						<a href="{{ route('item.show', ['item_id' => $item->id]) }}" class="item-card__link">
 							<div class="item-card__image-wrapper">
-								<img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+								<img src="{{ $item->image_path }}" alt="{{ $item->name }}" class="item-card__image">
 							</div>
 							<span class="item-card__title">{{ $item->name }}</span>
 						</a>

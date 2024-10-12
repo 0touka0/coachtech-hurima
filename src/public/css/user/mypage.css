@@ -1,0 +1,154 @@
+.mypage {
+	padding-top: 60px;
+}
+
+/* ユーザー情報 */
+.mypage-info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 1010px;
+	height: 150px;
+	margin-left: 300px;
+	margin-bottom:60px;
+}
+
+.mypage-info__image-wrapper {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}
+
+.mypage-info__image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.mypage-info__default-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+	background: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mypage-info__name {
+	width: 250px;
+	height: 65px;
+	padding: 10px 0;
+	font-size: 36px;
+	text-align: center;
+	transform: translateX(-110px);
+}
+
+.mypage-info__link {
+	width: 310px;
+	height: 60px;
+	padding: 0 49px;
+	line-height: 60px;
+	font-size: 26px;
+	font-weight: 700;
+	color: #FF5555;
+	border: solid 2px #FF5555;
+	border-radius: 10px;
+	text-decoration: none;
+}
+
+/* タブ */
+.tabs-container {
+	width: 100%;
+}
+
+.tabs {
+	display: flex;
+	list-style-type: none;
+	padding-left: 130px;
+	padding-bottom: 5px;
+	border-bottom: solid 2px #5F5F5F;
+}
+
+.tabs-list:first-of-type {
+	margin-right: 85px;
+}
+
+.tab-link {
+	text-decoration: none;
+	font-size: 22px;
+	font-weight: bold;
+	color: #5F5F5F;
+}
+
+.is-active {
+	color: #FF0000;
+}
+
+/* 商品のリスト全体のスタイル */
+.mypage-content {
+	padding-top: 60px;
+}
+
+.item-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 70px;
+	max-width: 1370px;
+	margin: 0 auto;
+}
+
+/* 商品カードのスタイル */
+.item-card {
+	width: 290px; /* 幅固定 */
+	height: 320px; /* 高さ固定 */
+	transition: transform 0.2s;
+}
+
+.item-card:hover {
+	transform: translateY(-5px); /* カードが浮き上がるようなホバー効果 */
+}
+
+.item-card__link {
+	text-decoration: none;
+}
+
+/* 商品画像部分 */
+.item-card__image-wrapper {
+	position: relative;
+	width: 100%;
+	padding-top: 100%; /* 正方形にするための設定 */
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.item-card__image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover; /* 画像を正方形に収める */
+}
+
+/* SOLDラベルのスタイル */
+.item-card__image--sold {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background-color: red;
+	color: white;
+	padding: 5px 10px;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+/* 商品名のスタイル */
+.item-card__title {
+	display: block;
+	padding-top: 5px;
+	font-size: 20px;
+	color: #000;
+	text-decoration: none;
+}

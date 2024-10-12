@@ -19,16 +19,16 @@
 				@endif
 			</ul>
 		</div>
+		<!-- 商品リスト -->
 		<div class="item-content">
-			<!-- 商品リスト -->
 			<div class="item-list">
 				@foreach ($items as $item)
 					<div class="item-card">
 						<a href="{{ route('item.show', ['item_id' => $item->id]) }}" class="item-card__link">
 							<div class="item-card__image-wrapper">
-								<img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+								<img src="{{ $item->image_path }}" alt="{{ $item->name }}" class="item-card__image">
 								@if (in_array($item->id, $soldItemIds))
-									<span class="item-card__sold-label">SOLD</span>
+									<span class="item-card__image--sold">SOLD</span>
 								@endif
 							</div>
 							<span class="item-card__title">{{ $item->name }}</span>
