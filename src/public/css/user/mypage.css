@@ -7,9 +7,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 1010px;
+	max-width: 1000px;
 	height: 150px;
-	margin-left: 300px;
+	margin-left: 290px;
 	margin-bottom:60px;
 }
 
@@ -40,18 +40,18 @@
 	width: 250px;
 	height: 65px;
 	padding: 10px 0;
-	font-size: 36px;
+	font-size: 32px;
 	text-align: center;
-	transform: translateX(-110px);
+	transform: translateX(-100px);
 }
 
 .mypage-info__link {
-	width: 310px;
+	width: 290px;
 	height: 60px;
-	padding: 0 49px;
 	line-height: 60px;
-	font-size: 26px;
+	font-size: 24px;
 	font-weight: 700;
+	text-align: center;
 	color: #FF5555;
 	border: solid 2px #FF5555;
 	border-radius: 10px;
@@ -151,4 +151,77 @@
 	font-size: 20px;
 	color: #000;
 	text-decoration: none;
+}
+
+/* タブレット対応 */
+@media (max-width: 851px) {
+	/* マイページの全体レイアウト */
+	.mypage {
+		padding-top: 30px; /* 上の余白を少し縮小 */
+	}
+
+	/* ユーザー情報 */
+	.mypage-info {
+		flex-direction: column; /* ユーザー情報を縦に並べる */
+		align-items: center;
+		margin-left: 0; /* 左の余白をなくす */
+		height: auto; /* 高さを自動調整 */
+		margin-bottom: 30px;
+	}
+
+	.mypage-info__name {
+		width: auto; /* 幅を自動に */
+		font-size: 28px; /* フォントサイズを少し小さく */
+		transform: none; /* 位置の調整をなくす */
+		padding: 8px 0; /* 上下に余白を追加 */
+		text-align: center;
+	}
+
+	.mypage-info__link {
+		width: 240px; /* プロフィール編集ボタンを小さめに */
+		height: 50px;
+		line-height: 50px;
+		font-size: 20px;
+	}
+
+	/* タブメニュー */
+	.tabs {
+		justify-content: center;
+		padding-left: 0;
+	}
+
+	.tabs-list:first-of-type {
+		margin-right: 30px;
+	}
+
+	.tabs-list {
+		margin-right: 0; /* タブ間の余白をなくす */
+		margin-bottom: 10px; /* 縦並びなので、下に余白を追加 */
+	}
+
+	.tab-link {
+		font-size: 18px; /* フォントサイズを少し小さく */
+	}
+
+	/* 商品リスト */
+	.item-list {
+		flex-direction: column; /* 商品カードを縦に並べる */
+		gap: 40px; /* 間隔を少し狭める */
+		max-width: 100%; /* 横幅いっぱいに表示 */
+	}
+
+	/* 商品カード */
+	.item-card {
+		width: 80%;
+		margin: 0 auto;
+		height: auto; /* 高さを自動調整 */
+	}
+
+	.item-card__image-wrapper {
+		padding-top: 75%; /* 正方形から少し長方形に変更 */
+	}
+
+	.item-card__title {
+		font-size: 18px; /* フォントサイズを少し小さく */
+	}
 }

@@ -101,6 +101,57 @@ body {
     cursor: pointer;
 }
 
+/* タブレット対応 */
+@media (max-width: 851px) {
+	/* ヘッダー */
+	.header {
+		flex-direction: column; /* ナビゲーションやロゴを縦に並べる */
+		height: auto;
+		padding: 10px;
+	}
+
+	.header-logo {
+		width: 100%;
+		height: auto;
+		margin: 0;
+		display: flex;
+		justify-content: center;
+	}
+
+	.search-form {
+		width: 100%; /* 検索ボックスを全幅に */
+		margin: 15px 0;
+	}
+
+	.search-form__input {
+		width: 60%; /* 検索ボックスの幅を縮小 */
+		padding: 0; /* paddingのリセット */
+		text-align: center;
+	}
+
+	/* ナビゲーション */
+	.header-nav {
+		width: 100%; /* ナビゲーションの幅を全体に */
+		height: 150px;
+	}
+
+	.header-nav__list {
+		flex-direction: column; /* ナビゲーションを縦に配置 */
+		width: 30%;
+		margin: 0 auto;
+		padding: 0;
+	}
+
+	.header-nav__item {
+		width: 100%; /* アイテム幅を全体に合わせる */
+		margin: 5px 0;
+	}
+
+	.header-nav__sell-link {
+		width: 80%; /* ボタンを少し小さく */
+	}
+}
+
 /* メインコンテンツ */
 .main {
 	max-width: 100%;

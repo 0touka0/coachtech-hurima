@@ -96,3 +96,41 @@
 	color: #000;
 	text-decoration: none;
 }
+
+@media (max-width: 851px) {
+	/* タブメニュー */
+	.tabs {
+		justify-content: center;
+		padding-left: 0;
+	}
+
+	.tabs-list:first-of-type {
+		margin-right: 25px;
+	}
+
+	.tab-link {
+		font-size: 18px; /* フォントサイズを少し小さく */
+	}
+
+	/* 商品リスト */
+	.item-list {
+		flex-direction: column; /* 商品カードを縦に並べる */
+		gap: 40px; /* 間隔を少し狭める */
+		max-width: 100%; /* 横幅いっぱいに表示 */
+	}
+
+	/* 商品カード */
+	.item-card {
+		width: 80%;
+		margin: 0 auto;
+		height: auto; /* 高さを自動調整 */
+	}
+
+	.item-card__image-wrapper {
+		padding-top: 75%; /* 正方形から少し長方形に変更 */
+	}
+
+	.item-card__title {
+		font-size: 18px; /* フォントサイズを少し小さく */
+	}
+}
