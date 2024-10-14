@@ -39,11 +39,9 @@ document.getElementById('mylist').addEventListener('click', function() {
 	.then(data => {
 		// アイコンの切り替え
 		if (data.in_mylist) {
-			icon.classList.remove('fa-regular');
-			icon.classList.add('fa-solid');
+			icon.classList.add('active');
 		} else {
-			icon.classList.remove('fa-solid');
-			icon.classList.add('fa-regular');
+			icon.classList.remove('active');
 		}
 
 		// 登録数を更新

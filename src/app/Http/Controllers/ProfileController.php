@@ -42,7 +42,6 @@ class ProfileController extends Controller
 
         // 住所データの保存処理
         if ($addressRequest->has('address')) {
-            // バリデーション済みデータを取得して更新データに追加
             $addressData = $addressRequest->validated();
             $updateData  = array_merge($updateData, $addressData);
         }

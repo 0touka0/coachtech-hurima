@@ -10,22 +10,24 @@
 		<div class="item__image-area">
 			<!-- 商品画像表示 -->
 			<div class="item__image-wrapper">
-				<img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+				<img class="item__image" src="{{ $item->image_path }}" alt="{{ $item->name }}">
 			</div>
 		</div>
 		<div class="item__detail-area">
 			<!-- 商品の詳細表示 -->
 			<div class="item__title">
 				<h1 class="item__name">{{ $item->name }}</h1>
-				<p class="item__price">￥{{ number_format($item->price) }}<span class="item__price-span">(税込み)</span></p>
+				<p class="item__price">￥<span class="item__price-span">{{ number_format($item->price) }}</span>(税込み)</p>
 				<div class="item-actions">
 					<div class="item__mylist" id="mylist" data-id="{{ $item->id }}">
-						<i class="fa-star {{ $isFavorited ? 'fa-solid active' : 'fa-regular' }}" id="mylist-icon"></i>
-						<span id="mylist-count"></span>
+						<img class="item__mylist-icon {{ $isFavorited ? 'item__mylist-icon--active' : '' }}" src="{{ asset('images/star-icon.png') }}" id="mylist-icon" alt="マイリストアイコン">
+						<span class="item__mylist-count" id="mylist-count"></span>
+						{{-- <i class="fa-star {{ $isFavorited ? 'fa-solid active' : 'fa-regular' }}" id="mylist-icon"></i>
+						<span id="mylist-count"></span> --}}
 					</div>
 					<div class="item__comment">
-						<i class="fa-regular fa-comment"></i>
-						<span class="item-comments__count" data-item-id="{{ $item->id }}"></span>
+						<img class="item__comment-icon" src="{{ asset('images/comment-icon.png') }}" alt="コメントアイコン">
+						<span class="item__comment-count" data-item-id="{{ $item->id }}"></span>
 					</div>
 				</div>
 			</div>

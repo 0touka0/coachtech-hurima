@@ -1,0 +1,42 @@
+.address-change-page {
+	max-width: 100%;
+	padding-top: 40px;
+}
+
+.address-change-page__header {
+	font-size: 32px;
+	font-weight: 700;
+	text-align: center;
+}
+
+/* 住所の変更フォーム */
+.address-form {
+	width: 45%;
+	margin: 80px auto;
+}
+
+.address-form__group {
+	width: 100%;
+	margin-bottom: 50px;
+}
+
+.address-form__label {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.address-form__input {
+	width: 100%;
+	line-height: 45px;
+	padding: 0 12px;
+	border: solid 1px #5f5f5f;
+	border-radius: 4px;
+}
+
+.address-form__btn {
+	width: 100%;
+	line-height: 55px;
+	margin-top: 30px;
+	font-size: 20px;
+	font-weight: 700;
+}
