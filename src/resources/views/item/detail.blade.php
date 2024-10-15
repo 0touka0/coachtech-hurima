@@ -17,13 +17,11 @@
 			<!-- 商品の詳細表示 -->
 			<div class="item__title">
 				<h1 class="item__name">{{ $item->name }}</h1>
-				<p class="item__price">￥<span class="item__price-span">{{ number_format($item->price) }}</span>(税込み)</p>
+				<p class="item__price">¥<span class="item__price-span">4{{ number_format($item->price) }}</span>(税込)</p>
 				<div class="item-actions">
 					<div class="item__mylist" id="mylist" data-id="{{ $item->id }}">
 						<img class="item__mylist-icon {{ $isFavorited ? 'item__mylist-icon--active' : '' }}" src="{{ asset('images/star-icon.png') }}" id="mylist-icon" alt="マイリストアイコン">
 						<span class="item__mylist-count" id="mylist-count"></span>
-						{{-- <i class="fa-star {{ $isFavorited ? 'fa-solid active' : 'fa-regular' }}" id="mylist-icon"></i>
-						<span id="mylist-count"></span> --}}
 					</div>
 					<div class="item__comment">
 						<img class="item__comment-icon" src="{{ asset('images/comment-icon.png') }}" alt="コメントアイコン">
@@ -34,10 +32,10 @@
 
 			<!-- 購入リンク -->
 			<div class="item-Purchase">
-				<a href="{{ route('purchase.show', ['item_id' => $item->id]) }}">購入手続きへ</a>
+				<a href="{{ route('purchase.show', ['item_id' => $item->id]) }}" class="item-Purchase__link btn">購入手続きへ</a>
 			</div>
 
-			<!-- 商品説明 -->
+			<!-- 商品の説明 -->
 			<div class="item-description">
 				<h2 class="item-description__header">商品説明</h2>
 				<p class="item-description__condition">{{ $item->description }}。</p>
@@ -50,7 +48,7 @@
 					<span class="item-info__category-span">カテゴリー</span>
 					<ul class="item-info__category-lists">
 						@foreach ($item->categories as $category)
-							<li>{{ $category->category }}</li>
+							<li class="item-info__category-list">{{ $category->category }}</li>
 						@endforeach
 					</ul>
 				</div>
@@ -63,7 +61,9 @@
 				@foreach ($comments as $comment)
 					<article class="item-comments__comment">
 						<div class="item-comments__user-info">
-							<img class="item-comments__user-image" src="{{ $comment->user->image_path }}" alt="プロフィール画像">
+							<div class="item-comments__user-image-wrapper">
+								<img class="item-comments__user-image" src="{{ $comment->user->image_path }}" alt="プロフィール画像">
+							</div>
 							<h3 class="item-comments__user-name">{{ $comment->user->name }}</h3>
 						</div>
 						<p class="item-comments__content">{{ $comment->comment }}</p>
