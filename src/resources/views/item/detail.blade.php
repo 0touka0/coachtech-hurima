@@ -19,13 +19,13 @@
 				<h1 class="item__name">{{ $item->name }}</h1>
 				<p class="item__price">¥<span class="item__price-span">4{{ number_format($item->price) }}</span>(税込)</p>
 				<div class="item-actions">
-					<div class="item__mylist" id="mylist" data-id="{{ $item->id }}">
-						<img class="item__mylist-icon {{ $isFavorited ? 'item__mylist-icon--active' : '' }}" src="{{ asset('images/star-icon.png') }}" id="mylist-icon" alt="マイリストアイコン">
-						<span class="item__mylist-count" id="mylist-count"></span>
+					<div class="item-mylist" id="mylist" data-id="{{ $item->id }}">
+						<img class="item-mylist__icon" src="{{ asset('images/star-icon.png') }}" id="mylist-icon" alt="マイリストアイコン">
+						<span class="item-mylist__count" id="mylist-count"></span>
 					</div>
-					<div class="item__comment">
-						<img class="item__comment-icon" src="{{ asset('images/comment-icon.png') }}" alt="コメントアイコン">
-						<span class="item__comment-count" data-item-id="{{ $item->id }}"></span>
+					<div class="item-comment">
+						<img class="item-comment__icon" src="{{ asset('images/comment-icon.png') }}" alt="コメントアイコン">
+						<span class="item-comments__count" data-item-id="{{ $item->id }}"></span>
 					</div>
 				</div>
 			</div>
@@ -45,14 +45,17 @@
 			<div class="item-info">
 				<h2 class="item-info__header">商品の情報</h2>
 				<div class="item-info__category">
-					<span class="item-info__category-span">カテゴリー</span>
+					<h3 class="item-info__category-title">カテゴリー</h3>
 					<ul class="item-info__category-lists">
 						@foreach ($item->categories as $category)
 							<li class="item-info__category-list">{{ $category->category }}</li>
 						@endforeach
 					</ul>
 				</div>
-				<p class="item-info__condition"><span class="item-info__condition-span">商品の状態</span>{{ $item->condition }}</p>
+				<div class="item-info__condition">
+					<h3 class="item-info__condition-title">商品の状態</h3>
+					<p class="item-info__condition-description">{{ $item->condition }}</p>
+				</div>
 			</div>
 
 			<!-- コメントセクション -->
@@ -70,14 +73,14 @@
 					</article>
 				@endforeach
 				<div class="item-comments__form">
-					<h3>商品へのコメント</h3>
+					<h3 class="item-comments__form-header">商品へのコメント</h3>
 					<form action="{{ route('comment.send', ['item_id' => $item->id]) }}" method="post">
 						@csrf
 						@if (auth()->check())
 							<input type="hidden" name="id" value="{{ $user->id }}">
 						@endif
-						<textarea name="comment" cols="30" rows="10"></textarea>
-						<button type="submit">コメントを送信する</button>
+						<textarea class="item-comments__form-textarea" name="comment" cols="30" rows="10"></textarea>
+						<button class="item-comments__form-btn btn" type="submit">コメントを送信する</button>
 					</form>
 				</div>
 			</div>

@@ -15,7 +15,7 @@ function updateCommentCount(itemId, countCommentElement) {
 
 // ページロード時にコメント数を取得
 document.addEventListener('DOMContentLoaded', function() {
-	const commentElements = document.querySelectorAll('.item__comment-count');
+	const commentElements = document.querySelectorAll('.item-comments__count');
 
 	commentElements.forEach(countCommentElement => {
 		const itemId = countCommentElement.dataset.itemId;

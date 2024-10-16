@@ -12,17 +12,19 @@
 }
 
 .item__image-area {
-	padding: 36px 45px;
+	padding: 36px 0;
 }
 
 .item__detail-area {
-	padding: 0 60px;
+	max-width: 570px;
+	margin: 0 auto;
 }
 
 /* 商品画像 */
 .item__image-wrapper {
 	width: 600px;
 	height: 600px;
+	margin: 0 auto;
 }
 
 .item__image {
@@ -34,7 +36,6 @@
 
 /* 商品の詳細 */
 .item__title {
-	width: 100%;
 	height: 270px;
 }
 
@@ -62,21 +63,21 @@
 	margin-left: 40px;
 }
 
-.item__mylist,
-.item__comment {
+.item-mylist,
+.item-comment {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 40px;
 }
 
-.item__mylist-icon,
-.item__comment-icon {
+.item-mylist__icon,
+.item-comment__icon {
 	width: 100%;
 }
 
-.item__mylist-count
-.item__comment-count {
+.item-mylist__count,
+.item-comments__count {
 	font-size: 18px;
 	font-weight: 700;
 	padding-top: 5px;
@@ -84,7 +85,6 @@
 
 /* 購入リンク */
 .item-Purchase {
-	width: 570px;
 	height: 100px;
 	padding: 22px 0;
 }
@@ -101,7 +101,6 @@
 
 /* 商品の説明 */
 .item-description {
-	width: 100%;
 	height: 320px;
 }
 
@@ -126,14 +125,17 @@
 	font-size: 36px;
 }
 
+.item-comments__count:first-child {
+	font-size: 36px;
+}
+
 .item-info__category {
 	display: flex;
 	line-height: 30px;
 }
 
-.item-info__category-span {
+.item-info__category-title {
 	font-size: 24px;
-	font-weight: 700;
 	margin-right: 60px;
 }
 
@@ -152,14 +154,17 @@
 }
 
 .item-info__condition {
+	display: flex;
 	line-height: 100px;
-	font-size: 20px;
 }
 
-.item-info__condition-span {
+.item-info__condition-title {
 	font-size: 24px;
-	font-weight: 700;
-	margin-right: 80px;
+	margin-right: 60px;
+}
+
+.item-info__condition-description {
+	font-size: 20px;
 }
 
 /* コメントセクション */
@@ -176,12 +181,13 @@
 
 .item-comments__comment {
 	width: 100%;
-	height: 200px;
+	margin-bottom: 40px;
 }
 
 .item-comments__user-info {
 	display: flex;
 	align-items: center;
+	margin-bottom: 20px;
 }
 
 .item-comments__user-image-wrapper {
@@ -199,4 +205,37 @@
 .item-comments__user-name {
 	font-size: 30px;
 	margin-left: 20px;
+}
+
+.item-comments__content {
+	line-height: 70px;
+	padding-left: 20px;
+	font-size: 20px;
+	background: #E5E5E5;
+	border-radius: 5px;
+}
+
+.item-comments__form {
+	height: 430px;
+}
+
+.item-comments__form-header {
+	line-height: 50px;
+	font-size: 28px;
+}
+
+.item-comments__form-textarea {
+	width: 100%;
+	height: 250px;
+	border: solid 2px #5F5F5F;
+	border-radius: 5px;
+	margin-bottom: 40px;
+}
+
+.item-comments__form-btn {
+	width: 100%;
+	line-height: 55px;
+	font-size: 25px;
+	font-weight: 700;
+	border-radius: 4px;
 }
