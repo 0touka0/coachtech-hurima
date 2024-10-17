@@ -5,27 +5,32 @@
 @endsection
 
 @section('main')
+<form action="{{ route('purchase.store') }}" method="POST">
     <div class="purchase-page">
-        <form action="{{ route('purchase.store') }}" method="POST">
             @csrf
             <!-- 商品情報 -->
             <div class="purchase-item">
-                <div class="purchase-item__img">
-                    <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+                <div class="purchase-item__image-wrapper">
+                    <img src="{{ $item->image_path }}" alt="{{ $item->name }}" class="purchase-item__image">
                 </div>
-                <h1 class="purchase-item__name">{{ $item->name }}</h1>
-                <p class="purchase-item__price">￥{{ number_format($item->price) }}</p>
+                <div class="purchase-item__info">
+                    <h1 class="purchase-item__name">{{ $item->name }}</h1>
+                    <p class="purchase-item__price">¥<span class="purchase-item__price-span">{{ number_format($item->price) }}</span></p>
+                </div>
             </div>
 
             <!-- 支払い方法 -->
             <div class="purchase-payment">
                 <h2 class="purchase-payment__title">支払い方法</h2>
-                <div class="purchase-payment__options">
-                    <select class="purchase-payment__select" id="payment-select" name="payment_method">
-                        <option value="">選択してください</option>
-                        <option value="コンビニ払い">コンビニ払い</option>
-                        <option value="カード払い">カード払い</option>
-                    </select>
+                <div class="purchase-payment__select">
+                    <p class="select-box" id="selectBox">
+                        選択してください
+                    </p>
+                    <ul class="select-options" id="selectOptions">
+                        <li class="select-options__list" data-value="コンビニ払い">コンビニ払い</li>
+                        <li class="select-options__list" data-value="カード払い">カード払い</li>
+                    </ul>
+                    <input type="hidden" name="payment_method" id="paymentMethod">
                 </div>
                 @if ($errors->has('payment_method'))
                     <p class="error-message">{{ $errors->first('payment_method') }}</p>
@@ -34,9 +39,9 @@
 
             <!-- 配送先 -->
             <div class="purchase-delivery">
-                <h2 class="purchase-dReeelivery__title">配送先</h2>
+                <h2 class="purchase-delivery__title">配送先</h2>
                 <a href="{{ route('address.show', ['item_id' => $item->id]) }}" class="purchase-delivery__edit-link">変更する</a>
-                {{-- セッションに購入時の住所があればそれを表示 --}}
+                {{-- セッションに購入時の住所がある場合そちらを表示 --}}
                 @if (session()->has('purchase_address') && session('purchase_address.item_id') == $item->id)
                     <div class="purchase-delivery__address">
                         <p class="purchase-delivery__postal">〒{{ session('purchase_address.postal_code') }}</p>
@@ -76,10 +81,11 @@
                 {{-- 後にstripeを使用する --}}
                 <button type="submit" class="purchase-action__btn btn">購入する</button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 @endsection
 
 @section('scripts')
+<script src="{{ asset('js/selectbox.js') }}"></script>
 	<script src="{{ asset('js/payment_confirmation.js') }}"></script>
 @endsection

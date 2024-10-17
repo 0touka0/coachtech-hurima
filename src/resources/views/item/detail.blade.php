@@ -17,7 +17,7 @@
 			<!-- 商品の詳細表示 -->
 			<div class="item__title">
 				<h1 class="item__name">{{ $item->name }}</h1>
-				<p class="item__price">¥<span class="item__price-span">4{{ number_format($item->price) }}</span>(税込)</p>
+				<p class="item__price">¥<span class="item__price-span">{{ number_format($item->price) }}</span>(税込)</p>
 				<div class="item-actions">
 					<div class="item-mylist" id="mylist" data-id="{{ $item->id }}">
 						<img class="item-mylist__icon" src="{{ asset('images/star-icon.png') }}" id="mylist-icon" alt="マイリストアイコン">

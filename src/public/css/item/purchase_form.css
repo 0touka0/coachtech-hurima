@@ -1,0 +1,234 @@
+.purchase-page {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	grid-template-rows: 230px 180px 200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 80px;
+}
+
+/* 商品情報 */
+.purchase-item {
+	grid-column: 1 / 2; /* 1列目（左側） */
+    grid-row: 1 / 2; /* 1行目 */
+	display: flex;
+	max-width: 800px;
+	height: 230px;
+	border-bottom: solid 1px #000000;
+}
+
+.purchase-item__image-wrapper {
+    width: 180px;
+    height: 180px;
+    margin-right: 60px;
+}
+
+.purchase-item__image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.purchase-item__info {
+	width: 330px;
+	height: 180px;
+}
+
+.purchase-item__name {
+    font-size: 30px;
+	font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.purchase-item__price {
+    font-size: 27px;
+	font-weight: 400;
+}
+
+.purchase-item__price-span {
+	font-size: 32px;
+	font-weight: 400;
+	padding-left: 5px;
+}
+
+/* 支払い方法 */
+.purchase-payment {
+	grid-column: 1 / 2; /* 1列目（左側） */
+    grid-row: 2 / 3; /* 2行目 */
+	padding-left: 35px;
+	max-width: 800px;
+	height: 180px;
+	border-bottom: solid 1px #000000;
+}
+
+.purchase-payment__title {
+	line-height: 85px;
+    font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.purchase-payment__select {
+	position: relative;
+	width: 265px;
+	height: 30px;
+	margin-left: 50px;
+	border: solid 1px #5F5F5F;
+	border-radius: 4px;
+}
+
+/* 支払い方法のアイコン */
+.purchase-payment__select::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 11px solid #5F5F5F;
+	transform: translateY(-50%);
+	pointer-events: none;
+}
+
+	.select-box {
+	line-height: 30px;
+	padding-left: 5px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #5F5F5F;
+    cursor: pointer;
+}
+
+.select-options {
+    display: none;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 270px;
+	height: 62px;
+    border: 1.5px solid #B1B1B1;
+    border-radius: 5px;
+    background-color: #636769;
+    list-style: none;
+    z-index: 100; /* 他の要素より前に表示されるように */
+}
+
+.select-options__list {
+	position: relative;
+	line-height: 22px;
+    margin: 5px;
+	padding-left: 25px;
+	color: #EAEAEA;
+	cursor: pointer;
+}
+
+/* 選択肢のチェックマーク */
+.select-options__list.selected::before {
+	content: '✓';
+	position: absolute;
+	top: 2px;
+    left: 2px;
+    color: #FFFFFF;
+	font-size: 22px;
+	font-weight: 700;
+}
+
+.select-options__list.selected {
+	background-color: #007BFF;
+	border-radius: 5px;
+}
+
+/* エラーメッセージ */
+.error-message {
+	margin-top: 10px;
+	padding-left: 50px;;
+}
+
+/* 配送先 */
+.purchase-delivery {
+	grid-column: 1 / 2; /* 1列目（左側） */
+    grid-row: 3 / 4; /* 3行目 */
+	padding-left: 35px;
+	max-width: 800px;
+	height: 200px;
+	border-bottom: solid 1px #000000;
+}
+
+.purchase-delivery__title {
+	display: inline-block;
+	width: 326px;
+    line-height: 85px;
+    font-size: 20px;
+	margin-right: 320px;
+	margin-bottom: 10px;
+}
+
+.purchase-delivery__edit-link {
+	display: inline-block;
+	width: 110px;
+	line-height: 85px;
+	color: #0073CC;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.purchase-delivery__address {
+	font-size: 20px;
+	font-weight: 600;
+    padding-left: 50px;
+}
+
+.purchase-delivery__address-line,
+.purchase-delivery__building {
+	display: inline-block;
+}
+
+.purchase-delivery__address-line {
+	margin-right: 5px;
+}
+
+
+/* 確認内容 */
+.purchase-confirmation {
+	grid-column: 2 / 3; /* 2列目（右側） */
+    grid-row: 1 / 2; /* 全行（1〜3行目）に跨る */
+	width: 440px;
+	height: 230px;
+	margin: 0 auto;
+}
+
+.purchase-confirmation__table {
+	width: 100%;
+	border: solid 1px #000000;
+    border-collapse: collapse;
+}
+
+.purchase-confirmation__th,
+.purchase-confirmation__td {
+	width: 50%;
+	line-height: 115px;
+    text-align: center;
+	font-weight: 400;
+    border-bottom: 1px solid #000000;
+}
+
+.purchase-confirmation__th {
+    font-size: 20px;
+}
+
+.purchase-confirmation__td {
+    font-size: 24px;
+}
+
+/* 購入ボタン */
+.purchase-action {
+	grid-column: 2 / 3; /* 2列目（右側） */
+    grid-row: 2 / 3; /* 確認部分の下に配置 */
+	margin: 60px auto;
+}
+
+.purchase-action__btn {
+	width: 440px;
+	height: 60px;
+	font-size: 26px;
+	font-weight: 700;
+}
