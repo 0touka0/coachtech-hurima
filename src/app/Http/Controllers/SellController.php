@@ -40,6 +40,6 @@ class SellController extends Controller
         $categories = $request->input('category'); // フォームから受け取ったカテゴリーID
         $item->categories()->sync($categories); // 中間テーブルに保存
 
-        return redirect('/')->with('success', '商品を出品しました！');
+        return redirect('/mypage');
     }
 }

@@ -15,6 +15,7 @@
 	max-width: 800px;
 	height: 230px;
 	border-bottom: solid 1px #000000;
+	margin-right: 120px;
 }
 
 .purchase-item__image-wrapper {
@@ -59,6 +60,7 @@
 	max-width: 800px;
 	height: 180px;
 	border-bottom: solid 1px #000000;
+	margin-right: 120px;
 }
 
 .purchase-payment__title {
@@ -133,7 +135,7 @@
 }
 
 .select-options__list.selected {
-	background-color: #007BFF;
+	background-color: #5599EB;
 	border-radius: 5px;
 }
 
@@ -151,21 +153,23 @@
 	max-width: 800px;
 	height: 200px;
 	border-bottom: solid 1px #000000;
+	margin-right: 120px;
+}
+
+.purchase-delivery__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 85px;
 }
 
 .purchase-delivery__title {
-	display: inline-block;
 	width: 326px;
-    line-height: 85px;
     font-size: 20px;
-	margin-right: 320px;
-	margin-bottom: 10px;
 }
 
 .purchase-delivery__edit-link {
-	display: inline-block;
 	width: 110px;
-	line-height: 85px;
 	color: #0073CC;
 	font-size: 20px;
 	text-decoration: none;
@@ -175,11 +179,6 @@
 	font-size: 20px;
 	font-weight: 600;
     padding-left: 50px;
-}
-
-.purchase-delivery__address-line,
-.purchase-delivery__building {
-	display: inline-block;
 }
 
 .purchase-delivery__address-line {
@@ -223,12 +222,32 @@
 .purchase-action {
 	grid-column: 2 / 3; /* 2列目（右側） */
     grid-row: 2 / 3; /* 確認部分の下に配置 */
+	width: 440px;
 	margin: 60px auto;
 }
 
 .purchase-action__btn {
-	width: 440px;
+	width: 100%;
 	height: 60px;
 	font-size: 26px;
 	font-weight: 700;
+}
+
+/* タブレット対応 */
+@media (max-width: 851px) {
+	/* 商品の詳細ページの全体レイアウト */
+	.purchase-page {
+        display: block;
+        padding: 40px 80px;
+    }
+
+	.purchase-item,
+	.purchase-payment,
+	.purchase-delivery {
+		margin: 0 auto;
+	}
+
+	.purchase-delivery {
+		margin-bottom: 60px;
+	}
 }

@@ -111,16 +111,14 @@ body {
 	}
 
 	.header-logo {
-		width: 100%;
-		height: auto;
-		margin: 0;
 		display: flex;
 		justify-content: center;
+		margin-bottom: 10px;
 	}
 
 	.search-form {
 		width: 100%; /* 検索ボックスを全幅に */
-		margin: 15px 0;
+		margin: 10px;
 	}
 
 	.search-form__input {
@@ -132,7 +130,7 @@ body {
 	/* ナビゲーション */
 	.header-nav {
 		width: 100%; /* ナビゲーションの幅を全体に */
-		height: 150px;
+		height: 165px;
 	}
 
 	.header-nav__list {
@@ -144,7 +142,7 @@ body {
 
 	.header-nav__item {
 		width: 100%; /* アイテム幅を全体に合わせる */
-		margin: 5px 0;
+		margin: 10px 0;
 	}
 
 	.header-nav__sell-link {

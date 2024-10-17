@@ -71,7 +71,18 @@
 	width: 40px;
 }
 
-.item-mylist__icon,
+.fa-star {
+	font-size: 40px;
+}
+
+.fa-star.fa-regular {
+	color: #434343;
+}
+
+.fa-star.fa-solid {
+	color: gold;
+}
+
 .item-comment__icon {
 	width: 100%;
 }
@@ -238,4 +249,20 @@
 	font-size: 25px;
 	font-weight: 700;
 	border-radius: 4px;
+}
+
+/* タブレット対応 */
+@media (max-width: 851px) {
+	/* 商品の詳細ページの全体レイアウト */
+	.item-detail-page {
+        display: block;
+        padding: 40px 20px;
+    }
+
+    /* 商品画像と詳細を縦並びに */
+    .item__image-area,
+    .item__detail-area {
+        width: 100%;
+        margin: 0 auto;
+    }
 }

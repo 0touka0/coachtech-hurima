@@ -39,8 +39,10 @@
 
             <!-- 配送先 -->
             <div class="purchase-delivery">
-                <h2 class="purchase-delivery__title">配送先</h2>
-                <a href="{{ route('address.show', ['item_id' => $item->id]) }}" class="purchase-delivery__edit-link">変更する</a>
+                <div class="purchase-delivery__header">
+                    <h2 class="purchase-delivery__title">配送先</h2>
+                    <a href="{{ route('address.show', ['item_id' => $item->id]) }}" class="purchase-delivery__edit-link">変更する</a>
+                </div>
                 {{-- セッションに購入時の住所がある場合そちらを表示 --}}
                 @if (session()->has('purchase_address') && session('purchase_address.item_id') == $item->id)
                     <div class="purchase-delivery__address">
@@ -87,5 +89,5 @@
 
 @section('scripts')
 <script src="{{ asset('js/selectbox.js') }}"></script>
-	<script src="{{ asset('js/payment_confirmation.js') }}"></script>
+<script src="{{ asset('js/payment_confirmation.js') }}"></script>
 @endsection

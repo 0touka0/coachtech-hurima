@@ -20,7 +20,7 @@
 				<p class="item__price">¥<span class="item__price-span">{{ number_format($item->price) }}</span>(税込)</p>
 				<div class="item-actions">
 					<div class="item-mylist" id="mylist" data-id="{{ $item->id }}">
-						<img class="item-mylist__icon" src="{{ asset('images/star-icon.png') }}" id="mylist-icon" alt="マイリストアイコン">
+						<i class="fa-star {{ $isFavorited ? 'fa-solid' : 'fa-regular' }}" id="mylist-icon"></i>
 						<span class="item-mylist__count" id="mylist-count"></span>
 					</div>
 					<div class="item-comment">
