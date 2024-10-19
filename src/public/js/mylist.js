@@ -31,11 +31,20 @@ document.getElementById('mylist').addEventListener('click', function() {
 	fetch(`/item/${itemId}/mylist`, {
 		method: 'POST',
 		headers: {
-		'Content-Type': 'application/json',
-		'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+			'Content-Type': 'application/json',
+			'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
 		}
 	})
-	.then(response => response.json())
+
+	.then(response => {
+		// リダイレクトが発生していたら手動でリダイレクト
+		if (response.redirected) {
+			window.location.href = response.url;
+			return;
+		}
+
+		return response.json();
+	})
 	.then(data => {
 		// アイコンの切り替え
 		if (data.in_mylist) {

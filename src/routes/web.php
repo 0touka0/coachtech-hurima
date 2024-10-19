@@ -31,9 +31,9 @@ Route::get('/item/{item_id}', [ItemDetailController::class, 'showItems'])->name(
 Route::get('/item/{item_id}/mylist/count' , [ItemDetailController::class, 'getMylistCount']);
 Route::get('/item/{item_id}/comment/count', [ItemDetailController::class, 'getCommentCount']);
 
-// 認証済みユーザのみのルート
-Route::middleware('auth')->group(function () {
-	// マイリスト、コメント登録
+// 認証済みユーザのみアクセス可能なルート
+Route::middleware(['auth', 'verified'])->group(function () {
+	// マイリスト、コメント登録(AJAXを使用、未認証のリダイレクト機能はそれぞれのjsファイルに記載)
 	Route::post('/item/{item_id}/mylist' , [ItemDetailController::class, 'toggleMylist']);
 	Route::post('/item/{item_id}/comment', [ItemDetailController::class, 'sendComment'])->name('comment.send');
 

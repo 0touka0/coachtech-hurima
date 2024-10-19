@@ -13,7 +13,7 @@
 				<!-- メールアドレスの入力 -->
 				<div class="login-form__group">
 					<label class="login-form__label" for="email">メールアドレス</label>
-					<input class="login-form__input" id="email" type="email" name="email" value="{{ old('email') }}">
+					<input class="login-form__input" id="email" type="email" name="email" autocomplete="username" value="{{ old('email') }}">
 					@if ($errors->has('email'))
 						<p class="error-message">{{ $errors->first('email') }}</p>
 					@endif
@@ -22,7 +22,7 @@
 				<!-- パスワードの入力 -->
 				<div class="login-form__group">
 					<label class="login-form__label" for="password">パスワード</label>
-					<input class="login-form__input" id="password" type="password" name="password">
+					<input class="login-form__input" id="password" type="password" name="password" autocomplete="current-password">
 					@if ($errors->has('password'))
 						<p class="error-message">{{ $errors->first('password') }}</p>
 					@endif

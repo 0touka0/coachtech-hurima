@@ -13,7 +13,7 @@
 				<!-- ユーザー名の入力 -->
 				<div class="register-form__group">
 					<label class="register-form__label">ユーザー名</label>
-					<input class="register-form__input" type="text" name="name" value="{{ old('name') }}">
+					<input class="register-form__input" type="text" name="name" autocomplete="username" value="{{ old('name') }}">
 					@if ($errors->has('name'))
 						<p class="error-message">{{ $errors->first('name') }}</p>
 					@endif
@@ -22,7 +22,7 @@
 				<!-- メールアドレスの入力 -->
 				<div class="register-form__group">
 					<label class="register-form__label">メールアドレス</label>
-					<input class="register-form__input" type="email" name="email" value="{{ old('email') }}">
+					<input class="register-form__input" type="email" name="email" autocomplete="username" value="{{ old('email') }}">
 					@if ($errors->has('email'))
 						<p class="error-message">{{ $errors->first('email') }}</p>
 					@endif
@@ -31,7 +31,7 @@
 				<!-- パスワードの入力 -->
 				<div class="register-form__group">
 					<label class="register-form__label">パスワード</label>
-					<input class="register-form__input" type="password" name="password">
+					<input class="register-form__input" type="password" name="password" autocomplete="new-password">
 					@if ($errors->has('password'))
 						<p class="error-message">{{ $errors->first('password') }}</p>
 					@endif
@@ -40,7 +40,7 @@
 				<!-- 確認用パスワードの入力 -->
 				<div class="register-form__group">
 					<label class="register-form__label">確認用パスワード</label>
-					<input class="register-form__input" type="password" name="password_confirmation">
+					<input class="register-form__input" type="password" name="password_confirmation" autocomplete="new-password">
 				</div>
 
 				<!-- 登録ボタン -->

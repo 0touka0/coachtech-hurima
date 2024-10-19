@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        $users = [
             [
             'name' => '出品者',
             'email' => 'seller@example.com',
@@ -33,7 +33,12 @@ class UsersTableSeeder extends Seeder
                 'postal_code' => '345-6789',
                 'address' => '大阪府大阪市北区梅田3-4-5',
                 'building_name' => 'グランフロント梅田タワーオフィスA棟5F',
-            ]
-        ]);
+            ],
+        ];
+
+        foreach ($users as $user) {
+            $user = User::create($user);
+            $user->sendEmailVerificationNotification(); // メール認証を送信
+        }
     }
 }

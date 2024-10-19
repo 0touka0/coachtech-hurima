@@ -12,11 +12,9 @@
 				<li class="tabs-list">
 					<a href="/?tab=recommend" class="tab-link {{ $tab === 'recommend' ? 'is-active' : '' }}">おすすめ</a>
 				</li>
-				@if (auth()->check())
-					<li class="tabs-list">
-						<a href="/?tab=mylist" class="tab-link {{ $tab === 'mylist' ? 'is-active' : '' }}">マイリスト</a>
-					</li>
-				@endif
+				<li class="tabs-list">
+					<a href="/?tab=mylist" class="tab-link {{ $tab === 'mylist' ? 'is-active' : '' }}">マイリスト</a>
+				</li>
 			</ul>
 		</div>
 		<!-- 商品リスト -->
