@@ -12,29 +12,72 @@ class ItemController extends Controller
     // 商品の一覧画面
     public function index(Request $request)
     {
-        // タブの状態を取得
-        $tab = $request->query('tab', 'recommend');
         $userId = auth()->id();
+        // クエリパラメータからタブとキーワードを取得
+        $tab = $request->query('tab', session('tab', 'recommend'));
+        $keyword = $request->query('keyword', session('keyword'));
 
-        // マイリストの商品を取得
-        if ($tab === 'mylist') {
-            // マイリストに登録された商品の取得
-            $items = Mylist::where('user_id', $userId)
-                           ->where('is_favorited', 1)
-                           ->whereHas('item', function ($query) use ($userId) {
-                                $query->where('seller_id', '!=', $userId);
-                            })
-                           ->with('item')
-                           ->get()
-                           ->pluck('item');
+        // もしクエリパラメータがなければセッションをリセット（リセット時は通常表示）
+        if (!$request->has('keyword')) {
+            session()->forget('keyword');  // 検索キーワードをクリア
         } else {
-            // おすすめ商品を取得
-            $items = Item::where('seller_id', '!=', $userId)->get();
+            session(['keyword' => $keyword]);  // 検索キーワードをセッションに保存
         }
 
+        // 現在のタブをセッションに保存
+        session(['tab' => $tab]);
+
+        // アイテム取得処理を共通メソッドで呼び出す
+        $items = $this->getItemsByTab($tab, $userId, $keyword);
+
         // 購入済み商品のIDを取得
-        $soldItemIds = Purchase::pluck('item_id')->toArray();
+        $soldItemIds = $this->getSoldItemIds();
 
         return view('item/list', compact('tab', 'items', 'soldItemIds'));
+    }
+
+    public function search(Request $request)
+    {
+        // indexメソッドと同じロジック
+        return $this->index($request);
+    }
+
+    // タブによってアイテムを取得する共通メソッド
+    private function getItemsByTab($tab, $userId, $keyword = null)
+    {
+        if ($tab === 'mylist') {
+            // マイリストに登録された商品を取得
+            $query = Mylist::where('user_id', $userId)
+                ->where('is_favorited', 1)
+                ->whereHas('item', function ($query) use ($userId) {
+                    $query->where('seller_id', '!=', $userId); // 自身で出品した商品を除く
+                })
+                ->with('item');
+
+            // 検索キーワードがある場合はフィルタリング
+            if ($keyword) {
+                $query->whereHas('item', function ($query) use ($keyword) {
+                    $query->where('name', 'like', '%' . $keyword . '%');
+                });
+            }
+
+            return $query->get()->pluck('item');
+        } else {
+            // 全ての商品からおすすめ商品または検索結果を取得
+            $query = Item::where('seller_id', '!=', $userId); // 自身で出品した商品を除く
+
+            // 検索キーワードがある場合はフィルタリング
+            if ($keyword) {
+                $query->where('name', 'like', '%' . $keyword . '%');
+            }
+
+            return $query->get();
+        }
+    }
+
+    // 購入済み商品のIDを取得する共通メソッド
+    private function getSoldItemIds()
+    {
+        return Purchase::pluck('item_id')->toArray();
     }
 }

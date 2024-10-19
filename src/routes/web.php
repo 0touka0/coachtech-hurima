@@ -25,11 +25,16 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register' , [RegisterController::class, 'store']);
 Route::post('/login'    , [LoginController::class, 'store']);
 
-// 商品一覧、商品詳細画面
+// 商品一覧
 Route::get('/', [ItemController::class, 'index']);
+
+// 商品詳細画面
 Route::get('/item/{item_id}', [ItemDetailController::class, 'showItems'])->name('item.show');
 Route::get('/item/{item_id}/mylist/count' , [ItemDetailController::class, 'getMylistCount']);
 Route::get('/item/{item_id}/comment/count', [ItemDetailController::class, 'getCommentCount']);
+
+// 検索機能
+Route::get('/search', [ItemController::class, 'search']);
 
 // 認証済みユーザのみアクセス可能なルート
 Route::middleware(['auth', 'verified'])->group(function () {

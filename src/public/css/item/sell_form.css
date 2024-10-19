@@ -229,6 +229,10 @@
 	border-radius: 5px;
 }
 
+.sell-item-price__input {
+	padding: 10px 35px;
+}
+
 .sell-item-name__input,
 .sell-item-price__input {
 	height: 45px;

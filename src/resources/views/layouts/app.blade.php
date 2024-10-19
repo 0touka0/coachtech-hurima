@@ -22,7 +22,10 @@
 
 		<!-- 検索フォーム -->
 		<div class="search-form">
-			<input class="search-form__input" type="text" name="keyword" placeholder="なにをお探しですか？">
+			<form action="/search" method="get">
+				<input class="search-form__input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
+				<input type="hidden" name="tab" value="{{ request('tab', 'recommend') }}">
+			</form>
 		</div>
 
 		<!-- ナビゲーション -->
