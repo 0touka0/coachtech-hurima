@@ -151,5 +151,6 @@ return [
         'address' => '住所',
         'building_name' => '建物名',
         'payment_method' => '支払い方法',
+        'comment' => 'コメント',
     ],
 ];

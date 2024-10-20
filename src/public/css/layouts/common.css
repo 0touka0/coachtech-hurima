@@ -33,9 +33,9 @@ body {
 .search-form__input {
 	display: block;
 	width: 510px;
-	height: 50px;
+	line-height: 50px;
 	margin: 0 auto;
-	padding-left: 40px;
+	padding: 0 20px;
 	background: #fff;
 	font-size: 24px;
 	border: none;
@@ -44,6 +44,7 @@ body {
 }
 
 .search-form__input::placeholder {
+	padding-left: 20px;
     color: #000;
     opacity: 1;
 }

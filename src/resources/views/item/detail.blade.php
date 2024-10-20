@@ -65,7 +65,11 @@
 					<article class="item-comments__comment">
 						<div class="item-comments__user-info">
 							<div class="item-comments__user-image-wrapper">
-								<img class="item-comments__user-image" src="{{ $comment->user->image_path }}" alt="プロフィール画像">
+								@if ($comment->user->image_path)
+									<img class="item-comments__user-image" src="{{ $comment->user->image_path }}" alt="プロフィール画像">
+								@else
+									<div class="item-comments__default-image"></div>
+								@endif
 							</div>
 							<h3 class="item-comments__user-name">{{ $comment->user->name }}</h3>
 						</div>
@@ -74,6 +78,9 @@
 				@endforeach
 				<div class="item-comments__form">
 					<h3 class="item-comments__form-header">商品へのコメント</h3>
+					@if ($errors->has('comment'))
+						<p class="error-message">{{ $errors->first('comment') }}</p>
+					@endif
 					<form action="{{ route('comment.send', ['item_id' => $item->id]) }}" method="post">
 						@csrf
 						@if (auth()->check())
