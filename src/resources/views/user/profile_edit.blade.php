@@ -15,14 +15,10 @@
 				<!-- プロフィール画像のアップロード -->
 				<div class="image-form__group">
 					<div class="image-form__image-wrapper">
-						@if ($user->image_path)
-							<img class="image-form__image" src="{{ $user->image_path }}" alt="プロフィール画像">
-						@else
-							<div class="image-form__default-image"></div>
-						@endif
+						<img class="image-form__image" src="{{ $user->image_path }}" alt="プロフィール画像">
 					</div>
 					<button class="image-form__btn" type="button">画像を選択する</button>
-					<input class="image-form__input" type="file" name="image" accept="image/*" style="display:none;">
+					<input class="image-form__input" type="file" name="image" accept="image/*">
 					@if ($errors->has('image'))
 						<p class="error-message">{{ $errors->first('image') }}</p>
 					@endif
@@ -72,5 +68,5 @@
 @endsection
 
 @section('scripts')
-	<script src="{{ asset('js/image.js') }}"></script>
+	<script src="{{ asset('js/profile_image.js') }}"></script>
 @endsection

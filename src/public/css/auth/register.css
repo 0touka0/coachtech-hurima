@@ -52,7 +52,7 @@
 }
 
 /* タブレットサイズ（768px〜850px）対応 */
-@media (max-width: 851px) {
+@media (max-width: 850px) {
 	.register-form {
 		width: 80%;  /* タブレットのときに横幅を調整 */
 	}

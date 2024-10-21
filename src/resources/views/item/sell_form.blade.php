@@ -14,9 +14,9 @@
 				<div class="sell-item-image">
 					<h2 class="sell-item-image__title">商品画像</h2>
 					<div class="sell-item-image__form">
-						<img class="image-form__image" src="" alt="商品画像" style="display:none;">
+						<img class="image-form__image" src="" alt="商品画像">
 						<button class="image-form__btn" type="button">画像を選択する</button>
-						<input class="image-form__input" type="file" name="image" accept="image/*" style="display:none;">
+						<input class="image-form__input" type="file" name="image" accept="image/*">
 					</div>
 					@if ($errors->has('image'))
 						<p class="error-message">{{ $errors->first('image') }}</p>
@@ -94,6 +94,6 @@
 @endsection
 
 @section('scripts')
-	<script src="{{ asset('js/image.js') }}"></script>
+	<script src="{{ asset('js/item_image.js') }}"></script>
 	<script src="{{ asset('js/selectbox.js') }}"></script>
 @endsection

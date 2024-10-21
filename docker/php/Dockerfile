@@ -14,10 +14,8 @@ RUN curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
   && composer self-update
 
-# Laravel 8をインストール
-RUN composer create-project "laravel/laravel=8.*" . --prefer-dist
-
-# StripeのPHP SDKをインストール
-RUN composer require stripe/stripe-php
+# Laravel 8とStripeのPHP SDKをインストール
+RUN composer create-project "laravel/laravel=8.*" . --prefer-dist \
+  && composer require stripe/stripe-php
 
 WORKDIR /var/www

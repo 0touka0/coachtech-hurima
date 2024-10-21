@@ -27,8 +27,8 @@
                         選択してください
                     </p>
                     <ul class="select-options" id="selectOptions">
-                        <li class="select-options__list" data-value="コンビニ払い">コンビニ払い</li>
-                        <li class="select-options__list" data-value="カード払い">カード払い</li>
+                        <li class="select-options__list" data-value="konbini">コンビニ払い</li>
+                        <li class="select-options__list" data-value="card">カード払い</li>
                     </ul>
                     <input type="hidden" name="payment_method" id="paymentMethod">
                 </div>
@@ -82,6 +82,9 @@
                 <input type="hidden" name="building_name" value="{{ session('purchase_address.building_name') ?? $user->building_name }}">
                 {{-- 後にstripeを使用する --}}
                 <button type="submit" class="purchase-action__btn btn">購入する</button>
+                @if (session('error'))
+                    <p class="error-message">{{ session('error') }}</p>
+                @endif
             </div>
         </div>
     </form>

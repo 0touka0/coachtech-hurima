@@ -26,9 +26,10 @@ class MypageController extends Controller
         } else {
             // 購入した商品を取得
             $items = Purchase::where('buyer_id', $userId)
-                             ->with('item')
+                             ->with('item') // 関連するデータを一度にロード
                              ->get()
-                             ->pluck('item');
+                             ->pluck('item')
+                             ->unique('id');
         }
 
         return view('user/mypage', compact('user', 'tab', 'items'));

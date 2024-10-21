@@ -32,7 +32,14 @@
 
 			<!-- 購入リンク -->
 			<div class="item-Purchase">
-				<a href="{{ route('purchase.show', ['item_id' => $item->id]) }}" class="item-Purchase__link btn">購入手続きへ</a>
+				@if ($isSold)
+					<p class="item-Purchase__link--sold btn">購入済み</p>
+				@else
+					<a href="{{ route('purchase.show', ['item_id' => $item->id]) }}" class="item-Purchase__link btn">購入手続きへ</a>
+					@if (session('error'))
+						<p class="error-message">{{ session('error') }}</p>
+					@endif
+				@endif
 			</div>
 
 			<!-- 商品の説明 -->

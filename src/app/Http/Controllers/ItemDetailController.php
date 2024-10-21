@@ -6,6 +6,7 @@ use App\Http\Requests\CommentRequest;
 use App\Models\Item;
 use App\Models\ItemComment;
 use App\Models\Mylist;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 
 class ItemDetailController extends Controller
@@ -15,14 +16,16 @@ class ItemDetailController extends Controller
     {
         $user = Auth::user();
         $item = Item::findOrFail($item_id);
-        $comments = ItemComment::where('item_id', $item_id)->get();
 
         $isFavorited = $user && Mylist::where('user_id', $user->id)
                                       ->where('item_id', $item->id)
                                       ->where('is_favorited', true)
                                       ->exists();
 
-        return view('item/detail', compact('item', 'isFavorited', 'comments', 'user'));
+        $comments = ItemComment::where('item_id', $item_id)->get();
+        $isSold = Purchase::where('item_id', $item_id)->first();
+
+        return view('item/detail', compact('user', 'item', 'isFavorited', 'comments', 'isSold'));
     }
 
     // マイリスト登録

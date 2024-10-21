@@ -93,7 +93,7 @@
 
 	.select-box {
 	line-height: 30px;
-	padding-left: 5px;
+	padding-left: 8px;
 	font-size: 16px;
 	font-weight: 700;
 	color: #5F5F5F;
@@ -137,12 +137,6 @@
 .select-options__list.selected {
 	background-color: #5599EB;
 	border-radius: 5px;
-}
-
-/* エラーメッセージ */
-.error-message {
-	margin-top: 10px;
-	padding-left: 50px;;
 }
 
 /* 配送先 */
@@ -233,8 +227,14 @@
 	font-weight: 700;
 }
 
+/* エラーメッセージ */
+.error-message:nth-child(3) {
+	margin-top: 10px;
+	padding-left: 50px;
+}
+
 /* タブレット対応 */
-@media (max-width: 851px) {
+@media (max-width: 850px) {
 	/* 商品の詳細ページの全体レイアウト */
 	.purchase-page {
         display: block;

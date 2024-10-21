@@ -21,7 +21,7 @@ class ItemController extends Controller
         if (!$request->has('keyword')) {
             session()->forget('keyword');  // 検索キーワードをクリア
         } else {
-            session(['keyword' => $keyword]);  // 検索キーワードをセッションに保存
+            session(['keyword' => $keyword]);
         }
 
         // 現在のタブをセッションに保存
@@ -54,7 +54,6 @@ class ItemController extends Controller
                 })
                 ->with('item');
 
-            // 検索キーワードがある場合はフィルタリング
             if ($keyword) {
                 $query->whereHas('item', function ($query) use ($keyword) {
                     $query->where('name', 'like', '%' . $keyword . '%');
@@ -66,7 +65,6 @@ class ItemController extends Controller
             // 全ての商品からおすすめ商品または検索結果を取得
             $query = Item::where('seller_id', '!=', $userId); // 自身で出品した商品を除く
 
-            // 検索キーワードがある場合はフィルタリング
             if ($keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');
             }

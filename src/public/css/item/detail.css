@@ -102,12 +102,21 @@
 
 .item-Purchase__link {
 	display: block;
-	width: 100%;
 	line-height: 56px;
 	font-size: 30px;
 	font-weight: 700;
 	text-align: center;
 	text-decoration: none;
+}
+
+.item-Purchase__link--sold {
+	line-height: 56px;
+	font-size: 30px;
+	font-weight: 700;
+	text-align: center;
+	text-decoration: none;
+	background: #5F5F5F;
+	pointer-events: none;
 }
 
 /* 商品の説明 */
@@ -266,7 +275,7 @@
 }
 
 /* タブレット対応 */
-@media (max-width: 851px) {
+@media (max-width: 850px) {
 	/* 商品の詳細ページの全体レイアウト */
 	.item-detail-page {
         display: block;

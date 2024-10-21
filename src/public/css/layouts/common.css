@@ -102,8 +102,29 @@ body {
     cursor: pointer;
 }
 
+/* メインコンテンツ */
+.main {
+	max-width: 100%;
+}
+
+/* ボタンの共通レイアウト */
+.btn {
+	background: #FF5555;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s ease;
+}
+
+/* エラーメッセージ */
+.error-message {
+	color: red;
+}
+
 /* タブレット対応 */
-@media (max-width: 851px) {
+@media (max-width: 850px) {
 	/* ヘッダー */
 	.header {
 		flex-direction: column; /* ナビゲーションやロゴを縦に並べる */
@@ -149,25 +170,4 @@ body {
 	.header-nav__sell-link {
 		width: 80%; /* ボタンを少し小さく */
 	}
-}
-
-/* メインコンテンツ */
-.main {
-	max-width: 100%;
-}
-
-/* ボタンの共通レイアウト */
-.btn {
-	background-color: #FF5555;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 16px;
-	transition: background-color 0.3s ease;
-}
-
-/* エラーメッセージ */
-.error-message {
-	color: red;
 }
