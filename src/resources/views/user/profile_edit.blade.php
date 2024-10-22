@@ -15,7 +15,7 @@
 				<!-- プロフィール画像のアップロード -->
 				<div class="image-form__group">
 					<div class="image-form__image-wrapper">
-						<img class="image-form__image" src="{{ $user->image_path }}" alt="プロフィール画像">
+						<img class="image-form__image {{ $user->image_path ? '' : 'no-image' }}" src="{{ $user->image_path }}" alt="プロフィール画像">
 					</div>
 					<button class="image-form__btn" type="button">画像を選択する</button>
 					<input class="image-form__input" type="file" name="image" accept="image/*">

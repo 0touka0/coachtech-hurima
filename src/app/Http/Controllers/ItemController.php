@@ -19,15 +19,14 @@ class ItemController extends Controller
 
         // もしクエリパラメータがなければセッションをリセット（リセット時は通常表示）
         if (!$request->has('keyword')) {
-            session()->forget('keyword');  // 検索キーワードをクリア
+            session()->forget('keyword'); // 検索キーワードをクリア
         } else {
             session(['keyword' => $keyword]);
         }
 
-        // 現在のタブをセッションに保存
         session(['tab' => $tab]);
 
-        // アイテム取得処理を共通メソッドで呼び出す
+        // 選択したタブの商品を取得
         $items = $this->getItemsByTab($tab, $userId, $keyword);
 
         // 購入済み商品のIDを取得
