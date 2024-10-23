@@ -6,93 +6,109 @@ use App\Http\Requests\CommentRequest;
 use App\Models\Item;
 use App\Models\ItemComment;
 use App\Models\Mylist;
-use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 
 class ItemDetailController extends Controller
 {
-    // 商品の詳細画面
-    public function showItems($item_id)
+    /**
+     * 商品の詳細画面を表示
+     *
+     * @param int $itemId
+     * @return \Illuminate\View\View
+     */
+    public function showItems($itemId)
     {
         $user = Auth::user();
-        $item = Item::findOrFail($item_id);
+        $item = Item::with(['itemComments', 'purchases'])->findOrFail($itemId);
 
         $isFavorited = $user && Mylist::where('user_id', $user->id)
-                                      ->where('item_id', $item->id)
-                                      ->where('is_favorited', true)
-                                      ->exists();
+            ->where('item_id', $item->id)
+            ->where('is_favorited', true)
+            ->exists();
 
-        $comments = ItemComment::where('item_id', $item_id)->get();
-        $isSold = Purchase::where('item_id', $item_id)->first();
+        // 購入されているかを確認
+        $isSold = $item->purchases->isNotEmpty(); // リレーションを利用
 
-        return view('item/detail', compact('user', 'item', 'isFavorited', 'comments', 'isSold'));
+        return view('item.detail', compact('user', 'item', 'isFavorited', 'isSold'));
     }
 
-    // マイリスト登録
-    public function toggleMylist($item_id)
+    /**
+     * マイリストに登録または解除
+     *
+     * @param int $itemId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function toggleMylist($itemId)
     {
         $user = auth()->user();
-        $item = Item::findOrFail($item_id);
+        $item = Item::findOrFail($itemId);
 
-        // マイリストに既に登録されているか確認
         $mylist = Mylist::where('user_id', $user->id)
-                        ->where('item_id', $item->id)
-                        ->where('is_favorited', true)
-                        ->first();
+            ->where('item_id', $item->id)
+            ->first();
 
-        if ($mylist) {
-            // 既にマイリストに登録されている場合は解除
+        if ($mylist && $mylist->is_favorited) {
+            // 既に登録されていれば解除
             $mylist->update(['is_favorited' => false]);
-            $isInMylist = false;
-        } else {
-            // マイリストに登録されていない場合は登録or更新
-            Mylist::updateOrCreate(
-                [
-                    'user_id' => $user->id,
-                    'item_id' => $item->id,
-                ],
-                [
-                    'is_favorited' => true
-                ]
-            );
-            $isInMylist = true;
+            return response()->json(['in_mylist' => false]);
         }
 
-        // 登録or解除した際のアイコンを変更するため
-        return response()->json([
-            'in_mylist' => $isInMylist
-        ]);
+        // まだ登録されていない場合は登録
+        Mylist::updateOrCreate(
+            ['user_id' => $user->id, 'item_id' => $item->id],
+            ['is_favorited' => true]
+        );
+
+        return response()->json(['in_mylist' => true]);
     }
 
-    // マイリスト登録数を取得
+    /**
+     * マイリスト登録数を取得
+     *
+     * @param int $itemId
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getMylistCount($itemId)
     {
         $item = Item::findOrFail($itemId);
         $mylistCount = Mylist::where('item_id', $item->id)
-                             ->where('is_favorited', true)
-                             ->count();
+            ->where('is_favorited', true)
+            ->count();
 
         return response()->json(['mylist_count' => $mylistCount]);
     }
 
-    // コメント登録
-    public function sendComment(CommentRequest $request, $item_id)
+    /**
+     * コメントを登録
+     *
+     * @param \App\Http\Requests\CommentRequest $request
+     * @param int $itemId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function sendComment(CommentRequest $request, $itemId)
     {
+        $user = Auth::user();
+
         ItemComment::create([
-            'user_id' => $request->id,
-            'item_id' => $item_id,
+            'user_id' => $user->id,
+            'item_id' => $itemId,
             'comment' => $request->comment,
         ]);
 
         return redirect()->back();
     }
 
-    // コメント数を取得
+    /**
+     * コメント数を取得
+     *
+     * @param int $itemId
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getCommentCount($itemId)
     {
         $item = Item::findOrFail($itemId);
         $commentCount = ItemComment::where('item_id', $item->id)
-                                   ->count();
+            ->count();
 
         return response()->json(['comment_count' => $commentCount]);
     }

@@ -31,7 +31,7 @@ Laravel環境構築
 
 ## 注意事項
 - メール認証の時間が経過してしまった場合、ログインを行うと再度メールが送信されます。
-- `購入する`ボタンを押下した際に決済ページに移動、商品は購入されたことになり商品詳細画面の`購入手続きへ`ボタンを使用できなくしています。
+- 商品購入画面の`購入する`ボタンを押下した際に決済ページに移動、商品は購入されたことになり商品詳細画面の`購入手続きへ`ボタンを使用できなくしています。
 
 ## 使用技術(実行環境)
 - PHP 8.3.6
@@ -52,7 +52,5 @@ Laravel環境構築
 - 商品出品画面　 : http://localhost/sell
 - プロフィール画面　　 : http://localhost/mypage
 - プロフィール編集画面 : http://localhost/mypage/profile
-- mailhog
-- http://localhost:8025
-- phpMyAdmin
-- http://localhost:8080
+- mailhog    : http://localhost:8025
+- phpMyAdmin : http://localhost:8080

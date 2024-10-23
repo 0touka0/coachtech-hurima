@@ -21,9 +21,9 @@
 		</div>
 
 		<!-- 検索フォーム -->
-		<div class="search-form">
+		<div class="header__search-form">
 			<form action="/search" method="get">
-				<input class="search-form__input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
+				<input class="search-form__input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ old('keyword', session('keyword')) }}">
 				<input type="hidden" name="tab" value="{{ request('tab', 'recommend') }}">
 			</form>
 		</div>

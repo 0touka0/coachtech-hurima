@@ -7,7 +7,6 @@
 	<title>coachtechフリマ</title>
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
 	<link rel="stylesheet" href="{{ asset('css/layouts/common.css') }}">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 	@yield('css')
 </head>
 <body>

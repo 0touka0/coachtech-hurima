@@ -78,7 +78,7 @@
 }
 
 /* SOLDラベルのスタイル */
-.item-card__image--sold {
+.item-card__sold {
 	position: absolute;
 	top: 10px;
 	left: 10px;

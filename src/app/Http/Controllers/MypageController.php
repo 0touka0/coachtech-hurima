@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class MypageController extends Controller
 {
-    // プロフィール画面
+    /**
+     * プロフィール画面
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
     public function showMypage(Request $request)
     {
         $user   = Auth::user();

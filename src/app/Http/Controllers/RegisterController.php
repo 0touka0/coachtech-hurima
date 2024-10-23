@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Auth\Events\Registered;
 use App\Http\Requests\RegisterRequest;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class RegisterController extends Controller
@@ -14,13 +13,22 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \App\Http\Requests\RegisterRequest  $request
+     * @param  \Laravel\Fortify\Contracts\CreatesNewUsers  $creator
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(RegisterRequest $request, CreatesNewUsers $creator)
     {
+        // Create a new user instance
         $user = $creator->create($request->all());
 
-        // 確認メールを送信するため
+        // Trigger the Registered event
         event(new Registered($user));
 
+        // Redirect to the profile edit page
         return redirect()->route('profile.edit');
     }
 }

@@ -95,12 +95,12 @@
 }
 
 /* 購入リンク */
-.item-Purchase {
+.item-purchase {
 	height: 100px;
 	padding: 22px 0;
 }
 
-.item-Purchase__link {
+.item-purchase__link {
 	display: block;
 	line-height: 56px;
 	font-size: 30px;
@@ -109,7 +109,7 @@
 	text-decoration: none;
 }
 
-.item-Purchase__link--sold {
+.item-purchase__link--sold {
 	line-height: 56px;
 	font-size: 30px;
 	font-weight: 700;

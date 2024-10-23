@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
 {
@@ -24,7 +26,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'    => ['required', 'email'],
+            'email' => ['required', 'email'],
             'password' => ['required', 'min:8']
         ];
     }
@@ -36,5 +38,19 @@ class LoginRequest extends FormRequest
             'password.required' => 'パスワードを入力してください',
             'password.min'      => 'パスワードは8文字以上で入力してください',
         ];
+    }
+
+    /**
+     * ユーザーを認証する処理を追加
+     */
+    public function authenticate()
+    {
+        // 認証試行
+        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+            // 認証失敗時に例外を投げる
+            throw ValidationException::withMessages([
+                'email' => [trans('auth.failed')],
+            ]);
+        }
     }
 }

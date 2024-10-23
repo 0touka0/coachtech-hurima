@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const button = document.querySelector('.image-form__btn');  // 画像選択ボタン
-    const input = document.querySelector('.image-form__input'); // 画像ファイル入力
-    const preview = document.querySelector('.image-form__image'); // プレビュー画像
+    const button = document.querySelector('.sell-item-image__btn');  // 画像選択ボタン
+    const input = document.querySelector('.sell-item-image__input'); // 画像ファイル入力
+    const preview = document.querySelector('.sell-item-image__image'); // プレビュー画像
 
     // 画像選択ボタンがクリックされたら、ファイル入力をトリガー
     button.addEventListener('click', function() {
