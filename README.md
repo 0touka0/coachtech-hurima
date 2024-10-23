@@ -17,8 +17,7 @@ Laravel環境構築
 - セッションの値をDBに保存しているので`SESSION_DRIVER=database`に変更してください。
 - `MAIL_FROM_ADDRESS`に`mailtest@example.com`等のような送信側のメールアドレス設定を行ってください。
 4. `php artisan key:generate`
-5. `php artisan migrate`
-6. `php artisan db:seed`
+5. `php artisan migrate --seed`
 
 ## 機能確認用ユーザー
 - ユーザー名：出品者

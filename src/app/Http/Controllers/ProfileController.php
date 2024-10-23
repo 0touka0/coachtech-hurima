@@ -6,6 +6,7 @@ use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -37,8 +38,14 @@ class ProfileController extends Controller
         // プロフィール画像の保存処理
         if ($profileRequest->hasFile('image')) {
             // 既存の画像があれば削除
-            if ($user->image_path && Storage::disk('public')->exists($user->image_path)) {
-                Storage::disk('public')->delete($user->image_path);
+            if ($user->image_path) {
+                // Webパスからファイルシステムのパスに変換
+                $filePath = str_replace('/storage/', '', $user->image_path);
+
+                // ファイルが存在する場合に削除
+                if (Storage::disk('public')->exists($filePath)) {
+                    Storage::disk('public')->delete($filePath);
+                }
             }
 
             // 画像を保存してパスを取得

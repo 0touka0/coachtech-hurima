@@ -12,7 +12,7 @@
             <!-- 商品情報 -->
             <div class="purchase-item">
                 <div class="purchase-item__image-wrapper">
-                    <img src="{{ $item->image_path }}" alt="{{ $item->name }}" class="purchase-item__image">
+                    <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="purchase-item__image">
                 </div>
                 <div class="purchase-item__info">
                     <h1 class="purchase-item__name">{{ $item->name }}</h1>
