@@ -31,9 +31,8 @@ class LoginController extends Controller
         // ログインしたユーザーを取得
         $user = Auth::user();
 
-        // 初回ログインかどうかを判定（created_atとupdated_atが同じ場合）
-        if ($user->created_at->eq($user->updated_at)) {
-            // 初回ログインならプロフィール編集ページにリダイレクト
+        if (empty($user->address)) {
+            // 住所が登録されていない場合は、プロフィール編集ページにリダイレクト
             return redirect()->route('profile.edit');
         }
 
