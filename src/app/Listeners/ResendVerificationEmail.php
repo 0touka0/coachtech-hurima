@@ -15,7 +15,7 @@ class ResendVerificationEmail
         $user = User::where('email', $event->credentials['email'])->first();
 
         // ユーザーが認証済みかチェック
-        if (!$user->hasVerifiedEmail()) {
+        if ($user && !$user->hasVerifiedEmail()) {
             // 認証メールを再送する
             $user->sendEmailVerificationNotification();
         }

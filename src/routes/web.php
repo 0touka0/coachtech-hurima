@@ -22,42 +22,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // ユーザ登録、ログイン
-Route::post('/register' , [RegisterController::class, 'store']);
-Route::post('/login'    , [LoginController::class, 'store']);
-
+Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/login', [LoginController::class, 'store']);
 // 商品一覧
 Route::get('/', [ItemController::class, 'index']);
 
-// 商品詳細画面
-Route::get('/item/{item_id}', [ItemDetailController::class, 'showItems'])->name('item.show');
-Route::get('/item/{item_id}/mylist/count' , [ItemDetailController::class, 'getMylistCount']);
-Route::get('/item/{item_id}/comment/count', [ItemDetailController::class, 'getCommentCount']);
+// 商品詳細関連のルート
+Route::prefix('item/{item_id}')->group(function () {
+	Route::get('/', [ItemDetailController::class, 'showItems'])->name('item.show');
+	Route::get('/mylist/count' , [ItemDetailController::class, 'getMylistCount']);
+	Route::get('/comment/count', [ItemDetailController::class, 'getCommentCount']);
+});
 
 // 検索機能
 Route::get('/search', [ItemController::class, 'search']);
 
-// 認証済みユーザのみアクセス可能なルート
+// 認証済みユーザーのみアクセス可能なルート
 Route::middleware(['auth', 'verified'])->group(function () {
-	// マイリスト、コメント登録(AJAXを使用、未認証のリダイレクト機能はそれぞれのjsファイルに記載)
+	// マイリスト、コメント登録
 	Route::post('/item/{item_id}/mylist' , [ItemDetailController::class, 'toggleMylist']);
 	Route::post('/item/{item_id}/comment', [ItemDetailController::class, 'sendComment'])->name('comment.send');
 
-	// 商品購入
-	Route::get('/purchase/{item_id}' , [PurchaseController::class, 'showPurchase'])->name('purchase.show');
-	Route::post('/purchase/store'	 , [PurchaseController::class, 'store'])->name('purchase.store');
+	// 購入関連のルート
+	Route::prefix('purchase/{item_id}')->group(function () {
+		Route::get('/', [PurchaseController::class, 'showPurchase'])->name('purchase.show');
+		Route::post('/store' , [PurchaseController::class, 'store'])->name('purchase.store');
+		Route::get('/address', [AddressChangeController::class, 'showAddressChange'])->name('address.show');
+		Route::post('/address/change', [AddressChangeController::class, 'changeAddress'])->name('address.change');
+	});
 
-	// 商品購入時の一時的な住所変更
-	Route::get('/purchase/address/{item_id}'		, [AddressChangeController::class, 'showAddressChange'])->name('address.show');
-	Route::post('/purchase/address/change/{item_id}', [AddressChangeController::class, 'changeAddress'])->name('address.change');
-
-	// マイページ
+	// マイページ関連のルート
 	Route::get('/mypage', [MypageController::class, 'showMypage'])->name('mypage');
-
-	// プロフィール編集
 	Route::get('/mypage/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
 	Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
 
-	// 出品画面
+	// 出品関連のルート
 	Route::get('/sell', [SellController::class, 'showSell'])->name('sell.show');
 	Route::post('/sell/store', [SellController::class, 'store'])->name('sell.store');
 });

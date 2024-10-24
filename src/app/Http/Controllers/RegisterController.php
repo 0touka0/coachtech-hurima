@@ -28,7 +28,7 @@ class RegisterController extends Controller
         // Trigger the Registered event
         event(new Registered($user));
 
-        // Redirect to the profile edit page
-        return redirect()->route('profile.edit');
+        // Redirect to the login page
+        return redirect('/login');
     }
 }

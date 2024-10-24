@@ -5,7 +5,7 @@
 @endsection
 
 @section('main')
-    <form action="{{ route('purchase.store') }}" method="POST">
+    <form action="{{ route('purchase.store', ['item_id' => $item->id]) }}" method="POST">
         @csrf
         <div class="purchase-page">
 
