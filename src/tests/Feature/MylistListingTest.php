@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Purchase;
@@ -10,6 +9,7 @@ use App\Models\Mylist;
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ItemsTableSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 /**
  * マイリスト表示に関するテスト
@@ -29,19 +29,19 @@ class MylistListingTest extends TestCase
         $this->seed(UsersTableSeeder::class);
         $this->seed(ItemsTableSeeder::class);
 
-        // ログインユーザーを取得
+        // ユーザーを取得してログイン
         $user = User::find(2);
+        $this->actingAs($user);
 
         // いいね（マイリストに追加）された商品を作成
         $likedItem = Item::first();
         Mylist::create([
             'user_id' => $user->id,
             'item_id' => $likedItem->id,
-            'is_favorited' => 1,
+            'is_favorited' => true,
         ]);
 
-        // ログインした状態でマイリストページにアクセス
-        $this->actingAs($user);
+        // マイリストページにアクセス
         $response = $this->get('/?tab=mylist');
 
         // いいねした商品が表示されているか確認
@@ -58,15 +58,16 @@ class MylistListingTest extends TestCase
         $this->seed(UsersTableSeeder::class);
         $this->seed(ItemsTableSeeder::class);
 
-        // ユーザーと商品を取得
+        // ユーザーを取得してログイン
         $user = User::find(2);
-        $item = Item::first();
+        $this->actingAs($user);
 
         // いいねされたが自分が出品した商品を作成
+        $item = Item::first();
         Mylist::create([
             'user_id' => $user->id,
             'item_id' => $item->id,
-            'is_favorited' => 1,
+            'is_favorited' => true,
         ]);
 
         // 購入データを作成して購入済みにする
@@ -80,7 +81,6 @@ class MylistListingTest extends TestCase
         ]);
 
         // マイリストページにアクセス
-        $this->actingAs($user);
         $response = $this->get('/?tab=mylist');
 
         // 「SOLD」が表示されていることを確認
@@ -97,8 +97,9 @@ class MylistListingTest extends TestCase
         $this->seed(UsersTableSeeder::class);
         $this->seed(ItemsTableSeeder::class);
 
-        // ログインユーザーを取得
+        // ユーザーを取得してログイン
         $user = User::first();
+        $this->actingAs($user);
 
         // ログインしたユーザーの商品を作成
         $ownItem = Item::where('seller_id', $user->id)->first();
@@ -107,11 +108,10 @@ class MylistListingTest extends TestCase
         Mylist::create([
             'user_id' => $user->id,
             'item_id' => $ownItem->id,
-            'is_favorited' => 1,
+            'is_favorited' => true,
         ]);
 
         // マイリストページにアクセス
-        $this->actingAs($user);
         $response = $this->get('/?tab=mylist');
 
         // 自分の商品が表示されていないことを確認

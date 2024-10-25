@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Item;
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ItemsTableSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 /**
  * 商品検索機能に関するテスト
@@ -27,7 +27,7 @@ class ItemSearchTest extends TestCase
         $this->seed(ItemsTableSeeder::class);
 
         // キーワードを設定して検索ページにアクセス
-        $keyword = '腕時計';
+        $keyword = '時計';
         $response = $this->get('/search?keyword=' . $keyword);
 
         // ステータスコードが200（正常）であることを確認

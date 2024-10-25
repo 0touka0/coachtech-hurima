@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Purchase;
@@ -11,6 +10,7 @@ use Database\Seeders\ItemsTableSeeder;
 use Database\Seeders\CategoriesTableSeeder;
 use Database\Seeders\CategorizationsTableSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 /**
  * 商品一覧表示に関するテスト
@@ -56,14 +56,14 @@ class ItemListingTest extends TestCase
         $this->seed(CategorizationsTableSeeder::class);
 
         // 購入済みの商品をシミュレート
-        $item = \App\Models\Item::first(); // シーダーで最初に作成された商品を取得する
-        $buyer = \App\Models\User::factory()->create();
+        $item = Item::first(); // シーダーで最初に作成された商品を取得する
+        $buyer = User::factory()->create();
 
         // 購入データを作成する（purchasesテーブルにレコードを追加する）
         Purchase::create([
             'item_id' => $item->id,
             'buyer_id' => $buyer->id,
-            'payment_method' => 'credit_card',
+            'payment_method' => 'card',
             'delivery_postal_code' => '1234567',
             'delivery_address' => '東京都渋谷区1-1-1',
             'delivery_building_name' => 'Test Building',
@@ -93,7 +93,7 @@ class ItemListingTest extends TestCase
 
         // ユーザーをログインさせて商品ページにアクセス
         $this->actingAs($user);
-        $response = $this->get('/mypage?tab=buy');
+        $response = $this->get('/');
 
         // 自分が出品した商品が表示されないことを確認
         $ownItems = Item::where('seller_id', $user->id)->get();

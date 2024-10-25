@@ -40,7 +40,7 @@ Route::get('/search', [ItemController::class, 'search']);
 // 認証済みユーザーのみアクセス可能なルート
 Route::middleware(['auth', 'verified'])->group(function () {
 	// マイリスト、コメント登録
-	Route::post('/item/{item_id}/mylist' , [ItemDetailController::class, 'toggleMylist']);
+	Route::post('/item/{item_id}/mylist' , [ItemDetailController::class, 'toggleMylist'])->name('item.mylist.toggle');
 	Route::post('/item/{item_id}/comment', [ItemDetailController::class, 'sendComment'])->name('comment.send');
 
 	// 購入関連のルート

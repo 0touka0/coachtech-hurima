@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Item;
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ItemsTableSeeder;
 use Database\Seeders\CategoriesTableSeeder;
 use Database\Seeders\CategorizationsTableSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 /**
  * 商品詳細情報取得に関するテスト
