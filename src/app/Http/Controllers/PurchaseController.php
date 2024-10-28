@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PurchaseRequest;
 use App\Models\Item;
 use App\Models\Purchase;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Stripe\Stripe;
 use Stripe\Checkout\Session;
 use Stripe\Price as StripePrice;
+use Stripe\Stripe;
 
 class PurchaseController extends Controller
 {
@@ -28,7 +29,25 @@ class PurchaseController extends Controller
             return redirect()->back()->with('error', '自分が出品した商品は購入できません。');
         }
 
-        return view('item.purchase_form', compact('user', 'item'));
+        return view('item.purchase_form', compact('user','item'));
+    }
+
+    /**
+     * 支払い方法を更新し、セッションに保存します。
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updatePaymentMethod(Request $request)
+    {
+        $request->validate([
+            'payment_method' => 'required|string|in:コンビニ払い,カード払い',
+        ]);
+
+        // セッションに支払い方法を保存
+        session(['payment_method' => $request->payment_method]);
+
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -37,10 +56,10 @@ class PurchaseController extends Controller
      * @param \App\Http\Requests\PurchaseRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(PurchaseRequest $request)
+    public function store(PurchaseRequest $request ,$itemId)
     {
         $user = Auth::user();
-        $item = Item::findOrFail($request->item_id);
+        $item = Item::findOrFail($itemId);
 
         // 出品者が自分だった場合、購入できない
         if ($item->seller_id == $user->id) {
@@ -49,7 +68,7 @@ class PurchaseController extends Controller
 
         // 購入情報の保存
         Purchase::create([
-            'item_id'                => $request->item_id,
+            'item_id'                => $itemId,
             'buyer_id'               => $user->id,
             'payment_method'         => $request->payment_method,
             'delivery_postal_code'   => $request->postal_code,

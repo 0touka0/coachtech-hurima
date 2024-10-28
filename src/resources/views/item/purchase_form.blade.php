@@ -5,6 +5,7 @@
 @endsection
 
 @section('main')
+    {{-- 支払いページへデータを送信するフォーム --}}
     <form action="{{ route('purchase.store', ['item_id' => $item->id]) }}" method="POST">
         @csrf
         <div class="purchase-page">
@@ -67,7 +68,9 @@
                     </tr>
                     <tr class="purchase-confirmation__tr">
                         <th class="purchase-confirmation__th">支払い方法</th>
-                        <td class="purchase-confirmation__td" id="payment-confirmation"></td>
+                        <td class="purchase-confirmation__td" id="payment-confirmation">
+                            {{ session('payment_method') }}
+                        </td>
                     </tr>
                 </table>
             </div>

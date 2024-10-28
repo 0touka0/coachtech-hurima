@@ -82,6 +82,8 @@ class CommentFeatureTest extends TestCase
         // シーダーを実行してデータをセットアップし、ユーザーにログインする
         $this->seed(UsersTableSeeder::class);
         $this->seed(ItemsTableSeeder::class);
+
+        // ユーザーを取得してログイン
         $user = User::first();
         $this->actingAs($user);
 
@@ -105,6 +107,8 @@ class CommentFeatureTest extends TestCase
         // シーダーを実行してデータをセットアップし、ユーザーにログインする
         $this->seed(UsersTableSeeder::class);
         $this->seed(ItemsTableSeeder::class);
+
+        // ユーザーを取得してログイン
         $user = User::first();
         $this->actingAs($user);
 

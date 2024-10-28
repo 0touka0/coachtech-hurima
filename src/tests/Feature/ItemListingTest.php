@@ -88,11 +88,11 @@ class ItemListingTest extends TestCase
         $this->seed(UsersTableSeeder::class);
         $this->seed(ItemsTableSeeder::class);
 
-        // ログインするユーザーをシーダーから取得
+        // // ユーザーを取得してログイン
         $user = User::first();
-
-        // ユーザーをログインさせて商品ページにアクセス
         $this->actingAs($user);
+
+        // 商品ページにアクセス
         $response = $this->get('/');
 
         // 自分が出品した商品が表示されないことを確認

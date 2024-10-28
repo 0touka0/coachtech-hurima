@@ -7,6 +7,7 @@ use App\Models\Item;
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ItemsTableSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
@@ -15,6 +16,7 @@ use Tests\TestCase;
 class ItemPurchaseFeatureTest extends TestCase
 {
     use DatabaseMigrations;
+    use RefreshDatabase;
 
     /**
      * 「購入する」ボタンを押下すると購入が完了することをテスト
@@ -26,17 +28,19 @@ class ItemPurchaseFeatureTest extends TestCase
         // シーダーを実行してデータをセットアップし、ユーザーにログインする
         $this->seed(UsersTableSeeder::class);
         $this->seed(ItemsTableSeeder::class);
+
+        // ユーザーを取得してログイン
         $user = User::find(2);
         $this->actingAs($user);
 
         // 商品購入画面を開く
         $item = Item::first();
-        $this->get(route('purchase.show', $item->id))->assertStatus(200);
+        $this->get(route('purchase.show', ['item_id' => $item->id]))->assertStatus(200);
 
         // 商品を選択して「購入する」ボタンを押下
-        $response = $this->post(route('purchase.store', $item->id), [
+        $response = $this->post(route('purchase.store', ['item_id' => $item->id]), [
             'payment_method' => 'card',
-            'postal_code' => '1234567',
+            'postal_code' => '123-4567',
             'address' => '東京都渋谷区1-1-1',
             'building_name' => 'Test Building',
         ]);
@@ -59,15 +63,17 @@ class ItemPurchaseFeatureTest extends TestCase
         // シーダーを実行してデータをセットアップし、ユーザーにログインする
         $this->seed(UsersTableSeeder::class);
         $this->seed(ItemsTableSeeder::class);
+
+        // ユーザーを取得してログイン
         $user = User::find(2);
         $this->actingAs($user);
 
         // 商品購入画面を開く
         $item = Item::first();
-        $this->get(route('purchase.show', $item->id))->assertStatus(200);
+        $this->get(route('purchase.show', ['item_id' => $item->id]))->assertStatus(200);
 
         // 商品を選択して「購入する」ボタンを押下
-        $this->post(route('purchase.store', $item->id), [
+        $this->post(route('purchase.store', ['item_id' => $item->id]), [
             'payment_method' => 'card',
             'postal_code' => '1234567',
             'address' => '東京都渋谷区1-1-1',
@@ -91,15 +97,17 @@ class ItemPurchaseFeatureTest extends TestCase
         // シーダーを実行してデータをセットアップし、ユーザーにログインする
         $this->seed(UsersTableSeeder::class);
         $this->seed(ItemsTableSeeder::class);
+
+        // ユーザーを取得してログイン
         $user = User::find(2);
         $this->actingAs($user);
 
         // 商品購入画面を開く
         $item = Item::first();
-        $this->get(route('purchase.show', $item->id))->assertStatus(200);
+        $this->get(route('purchase.show', ['item_id' => $item->id]))->assertStatus(200);
 
         // 商品を選択して「購入する」ボタンを押下
-        $this->post(route('purchase.store', $item->id), [
+        $this->post(route('purchase.store', ['item_id' => $item->id]), [
             'payment_method' => 'card',
             'postal_code' => '1234567',
             'address' => '東京都渋谷区1-1-1',

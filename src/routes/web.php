@@ -50,6 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('/address', [AddressChangeController::class, 'showAddressChange'])->name('address.show');
 		Route::post('/address/change', [AddressChangeController::class, 'changeAddress'])->name('address.change');
 	});
+	Route::post('/update-payment-method', [PurchaseController::class, 'updatePaymentMethod'])->name('payment.update');
 
 	// マイページ関連のルート
 	Route::get('/mypage', [MypageController::class, 'showMypage'])->name('mypage');

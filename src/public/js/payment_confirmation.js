@@ -16,7 +16,33 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.select-options__list').forEach(function(option) {
         option.addEventListener('click', function() {
             // 支払い方法の確認を更新
-            paymentConfirmation.textContent = this.textContent;
+            const selectedValue = this.textContent;
+
+            // Ajaxリクエストで支払い方法をセッションに保存
+            fetch('/update-payment-method', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    payment_method: selectedValue
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Payment method updated successfully.');
+
+                    // 表示の部分をリアルタイムに変更
+                    paymentConfirmation.textContent = `${selectedValue}`;
+                } else {
+                    console.error('Failed to update payment method');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         });
     });
 
