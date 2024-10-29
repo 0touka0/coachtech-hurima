@@ -9,7 +9,7 @@
         <div class="item__image-area">
             <!-- 商品画像表示 -->
             <div class="item__image-wrapper">
-                <img class="item__image" src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}">
+                <img class="item__image" src="{{ asset($item->image_path) }}" alt="{{ $item->name }}">
             </div>
         </div>
         <div class="item__detail-area">
