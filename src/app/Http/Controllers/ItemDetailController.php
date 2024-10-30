@@ -22,9 +22,9 @@ class ItemDetailController extends Controller
         $item = Item::with(['itemComments', 'purchases'])->findOrFail($itemId);
 
         $isFavorited = $user && Mylist::where('user_id', $user->id)
-            ->where('item_id', $item->id)
-            ->where('is_favorited', true)
-            ->exists();
+                                      ->where('item_id', $item->id)
+                                      ->where('is_favorited', true)
+                                      ->exists();
 
         // 購入されているかを確認
         $isSold = $item->purchases->isNotEmpty(); // リレーションを利用
@@ -44,8 +44,8 @@ class ItemDetailController extends Controller
         $item = Item::findOrFail($itemId);
 
         $mylist = Mylist::where('user_id', $user->id)
-            ->where('item_id', $item->id)
-            ->first();
+                        ->where('item_id', $item->id)
+                        ->first();
 
         if ($mylist && $mylist->is_favorited) {
             // 既に登録されていれば解除
@@ -72,8 +72,8 @@ class ItemDetailController extends Controller
     {
         $item = Item::findOrFail($itemId);
         $mylistCount = Mylist::where('item_id', $item->id)
-            ->where('is_favorited', true)
-            ->count();
+                             ->where('is_favorited', true)
+                             ->count();
 
         return response()->json(['mylist_count' => $mylistCount]);
     }
@@ -107,8 +107,7 @@ class ItemDetailController extends Controller
     public function getCommentCount($itemId)
     {
         $item = Item::findOrFail($itemId);
-        $commentCount = ItemComment::where('item_id', $item->id)
-            ->count();
+        $commentCount = ItemComment::where('item_id', $item->id)->count();
 
         return response()->json(['comment_count' => $commentCount]);
     }

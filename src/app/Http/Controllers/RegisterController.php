@@ -14,7 +14,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Handle a registration request for the application.
+     * ユーザー登録リクエストを処理し、アカウントを作成します。
      *
      * @param  \App\Http\Requests\RegisterRequest  $request
      * @param  \Laravel\Fortify\Contracts\CreatesNewUsers  $creator
@@ -22,13 +22,12 @@ class RegisterController extends Controller
      */
     public function store(RegisterRequest $request, CreatesNewUsers $creator)
     {
-        // Create a new user instance
+        // ユーザーのインスタンスを作成し、データベースに保存
         $user = $creator->create($request->all());
 
-        // Trigger the Registered event
+        // ユーザー登録完了のイベントを発行
         event(new Registered($user));
 
-        // Redirect to the login page
         return redirect('/login');
     }
 }
