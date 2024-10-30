@@ -3,21 +3,21 @@
 ## 環境構築
 Dockerビルド
 
-1. `git clone git@github.com:0touka0/coachtech-hurima.git`
-2. `docker-compose up -d --build`
+1. `$ git clone git@github.com:0touka0/coachtech-hurima.git`
+2. `$ docker-compose up -d --build`
 
 ※MySQLは、OSによって起動しない場合があるのでそれぞれのPCに合わせて、docker-compose.ymlファイルを編集してください。
 
 Laravel環境構築
 
-1. `docker-compose exec php bash`
-2. `composer install`
-3. `.env.example`ファイルから`.env`を作成し、環境変数を変更<br>
-- DBの設定を行って下さい
-- セッションの値をDBに保存しているので`SESSION_DRIVER=database`に変更してください。
-- `MAIL_FROM_ADDRESS`に`mailtest@example.com`等のような送信側のメールアドレス設定を行ってください。
-4. `php artisan key:generate`
-5. `php artisan migrate --seed`
+1. `$ docker-compose exec php bash`
+2. `$ composer install`
+3. `$ cp .env.example .env`<br>
+- .ymlを参照してDBの設定を行ってください
+- セッションの設定<br>`SESSION_DRIVER=file`を`SESSION_DRIVER=database`に変更してください。
+- 送信側のメールアドレス設定<br>`MAIL_FROM_ADDRESS=null`を`mailtest@example.com`等のメールアドレスに変更してください。
+4. `$ php artisan key:generate`
+5. `$ php artisan migrate --seed`
 
 ## 機能確認用ユーザー
 - ユーザー名：出品者
