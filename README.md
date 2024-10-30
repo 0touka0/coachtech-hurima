@@ -13,11 +13,15 @@ Laravel環境構築
 1. `$ docker-compose exec php bash`
 2. `$ composer install`
 3. `$ cp .env.example .env`<br>
-- .ymlを参照してDBの設定を行ってください
-- セッションの設定<br>`SESSION_DRIVER=file`を`SESSION_DRIVER=database`に変更してください。
-- 送信側のメールアドレス設定<br>`MAIL_FROM_ADDRESS=null`を`mailtest@example.com`等のメールアドレスに変更してください。
-4. `$ php artisan key:generate`
-5. `$ php artisan migrate --seed`
+4. `.env` の設定を行います：
+- **データベース設定**
+	- `docker-compose.yml`に記載されているデータベース設定を参考にして、`.env` ファイルのデータベース設定を行ってください。
+- **セッション設定**
+	- `SESSION_DRIVER=file` を `SESSION_DRIVER=database` に変更してください。
+- **送信側のメールアドレス設定**
+	- `MAIL_FROM_ADDRESS=null` を `mailtest@example.com` などのメールアドレスに変更してください。
+5. `$ php artisan key:generate`
+6. `$ php artisan migrate --seed`
 
 ## 機能確認用ユーザー
 - ユーザー名：出品者
