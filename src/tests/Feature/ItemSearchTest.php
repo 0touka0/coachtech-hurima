@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Item;
-use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ItemsTableSeeder;
+use Database\Seeders\UsersTableSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

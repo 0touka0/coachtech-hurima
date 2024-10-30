@@ -2,13 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use App\Models\Item;
-use App\Models\Purchase;
-use Database\Seeders\UsersTableSeeder;
+use App\Models\User;
 use Database\Seeders\ItemsTableSeeder;
-use Database\Seeders\CategoriesTableSeeder;
-use Database\Seeders\CategorizationsTableSeeder;
+use Database\Seeders\UsersTableSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -51,22 +48,21 @@ class ItemListingTest extends TestCase
     public function test_sold_label_is_displayed_for_purchased_items_on_list_page()
     {
         $this->seed(UsersTableSeeder::class);
-        $this->seed(CategoriesTableSeeder::class);
         $this->seed(ItemsTableSeeder::class);
-        $this->seed(CategorizationsTableSeeder::class);
+
+        // ユーザーを取得してログイン
+        $user = User::find(2);
+        $this->actingAs($user);
 
         // 購入済みの商品をシミュレート
         $item = Item::first(); // シーダーで最初に作成された商品を取得する
-        $buyer = User::factory()->create();
 
-        // 購入データを作成する（purchasesテーブルにレコードを追加する）
-        Purchase::create([
-            'item_id' => $item->id,
-            'buyer_id' => $buyer->id,
+        // 商品を選択して「購入する」ボタンを押下
+        $response = $this->post(route('purchase.store', ['item_id' => $item->id]), [
             'payment_method' => 'card',
-            'delivery_postal_code' => '1234567',
-            'delivery_address' => '東京都渋谷区1-1-1',
-            'delivery_building_name' => 'Test Building',
+            'postal_code' => '123-4567',
+            'address' => '東京都渋谷区1-1-1',
+            'building_name' => 'Test Building',
         ]);
 
         // 商品ページにアクセス

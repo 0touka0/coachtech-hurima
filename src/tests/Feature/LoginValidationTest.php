@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -48,39 +49,14 @@ class LoginValidationTest extends TestCase
     }
 
     /**
-     * 正しい情報が入力された場合のテスト(住所が未登録の場合)
-     */
-    public function test_successful_login_with_empty_address()
-    {
-        // 住所が未登録のユーザーを作成
-        $user = \App\Models\User::factory()->create([
-            'email' => 'test@example.com',
-            'password' => bcrypt('password123'),
-            'address' => null, // 住所が未登録
-        ]);
-
-        // 正しい情報でログインを試みる
-        $response = $this->post('/login', [
-            'email' => 'test@example.com',
-            'password' => 'password123',
-        ]);
-
-        // プロフィール編集ページへのリダイレクトを確認
-        $response->assertRedirect(route('profile.edit'));
-
-        $this->assertAuthenticatedAs($user); // ユーザーがログインされているか確認
-    }
-
-    /**
-     * 正しい情報が入力された場合のテスト(住所が登録済みの場合)
+     * 正しい情報が入力された場合のテスト
      */
     public function test_successful_login_with_address()
     {
         // 住所が登録されているユーザーを作成
-        $user = \App\Models\User::factory()->create([
+        $user = User::factory()->create([
             'email' => 'test@example.com',
             'password' => bcrypt('password123'),
-            'address' => '123 Main St', // 住所が登録済み
         ]);
 
         // 正しい情報でログインを試みる

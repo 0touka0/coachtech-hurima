@@ -47,7 +47,7 @@ class LoginRequest extends FormRequest
     {
         // 認証試行
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            // 認証失敗時に例外を投げる
+            // 認証失敗時に、emailフィールドにバリデーションエラーメッセージを設定して返す(ログイン画面に戻る)
             throw ValidationException::withMessages([
                 'email' => [trans('auth.failed')],
             ]);

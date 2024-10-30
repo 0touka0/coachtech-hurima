@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Item;
-use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ItemsTableSeeder;
+use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\CategoriesTableSeeder;
 use Database\Seeders\CategorizationsTableSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -38,7 +38,7 @@ class ItemDetailsTest extends TestCase
         $response->assertStatus(200);
 
         // 必要な情報が表示されているか確認
-        $response->assertSee(asset('storage/' . $item->image_path)); // 画像のパスが正しく表示されているか確認
+        $response->assertSee(asset($item->image_path)); // 画像のパスが正しく表示されているか確認
         $response->assertSee($item->name);
         $response->assertSee(number_format($item->price)); // 価格をフォーマットして確認
         $response->assertSee($item->myLists->count());

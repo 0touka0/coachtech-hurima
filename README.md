@@ -20,6 +20,8 @@ Laravel環境構築
      - `SESSION_DRIVER=file` を `SESSION_DRIVER=database` に変更してください。
    - **送信側のメールアドレス設定**
      - `MAIL_FROM_ADDRESS=null` を `mailtest@example.com` などのメールアドレスに変更してください。
+   - **stripeキーの設定**
+	 - .envの最後尾に`STRIPE_KEY=`と`STRIPE_SECRET=`を追加してキーを設定してください。
 5. `$ php artisan key:generate`
 6. `$ php artisan migrate --seed`
 

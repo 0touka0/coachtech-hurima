@@ -19,6 +19,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        // ログイン時に使用するリスナー
         Attempting::class => [
             ResendVerificationEmail ::class,
         ],

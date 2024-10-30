@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Database\Seeders\UsersTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -15,13 +16,11 @@ class LogoutTest extends TestCase
      */
     public function test_user_can_logout()
     {
-        /**
-         * ユーザーを作成してログインする
-         *  @var \App\Models\User $user
-         */
-        $user = User::factory()->create();
+        // 必要なシーダーを実行して、ダミーデータを作成
+        $this->seed(UsersTableSeeder::class);
 
         // ユーザーをログインさせる
+        $user = User::first();
         $this->actingAs($user);
 
         // ログアウト処理を実行する（POSTリクエストを送る）

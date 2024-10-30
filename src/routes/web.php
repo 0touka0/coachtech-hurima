@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SellController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +22,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// ユーザ登録、ログイン
+// ユーザ登録、ログイン、認証ルート
 Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'store']);
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+	$request->fulfill();
+	return redirect()->route('profile.edit'); // 認証完了後にリダイレクト
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
 // 商品一覧
 Route::get('/', [ItemController::class, 'index']);
 

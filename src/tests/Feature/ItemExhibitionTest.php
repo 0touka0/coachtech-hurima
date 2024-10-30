@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
-use App\Models\Item;
 use App\Models\Category;
+use App\Models\Item;
+use App\Models\User;
 use Database\Seeders\CategoriesTableSeeder;
 use Database\Seeders\UsersTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
