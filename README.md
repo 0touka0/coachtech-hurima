@@ -39,6 +39,8 @@ Laravel環境構築
      - `$ php artisan key:generate --env=testing`
    - キャッシュを削除するため、以下を実行します。
      - `$ php artisan config:clear`
+   - **stripeキーの設定**
+	   - .envの最後尾の`STRIPE_KEY=`と`STRIPE_SECRET=`にキーを設定してください。
 
 3. **マイグレーションの実行**
    - テスト用データベースにマイグレーションを実行します。
