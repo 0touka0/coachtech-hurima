@@ -20,7 +20,7 @@ class CreatePurchasesTable extends Migration
             $table->string('payment_method');
             $table->string('delivery_postal_code');
             $table->string('delivery_address');
-            $table->string('delivery_building_name')->nullable();
+            $table->string('delivery_building_name');
             $table->timestamps();
         });
     }
