@@ -26,6 +26,19 @@ Laravel環境構築
 6. `$ php artisan migrate --seed`
 7. `$ php artisan storage:link`
 
+テスト環境構築
+
+1. テスト用データベースの準備:
+   -mysqlのコンテナから管理者でmysqlにログインし`> CREATE DATABASE demo_test;`を実行してデータベースを作成してください。
+     -`> SHOW DATABASES;`を実行すると`demo_test`が作成されているか確認できます。
+2. `.env.testing`ファイルの修正：
+   -`APP_KEY=`に設定されているキーを削除し`$ php artisan key:generate --env=testing`を実行してください。
+   -キャッシュの削除を行うために`$ php artisan config:clear`を実行してください。
+3. `$ php artisan migrate --env=testing`
+4. テストの実行：
+   -`$ vendor/bin/phpunit`ですべてのテストを実行可能です。
+   -ファイルごとに行う場合は`$ vendor/bin/phpunit tests/Feature/ファイル名.php`となります。
+
 ## 機能確認用ユーザー
 - ユーザー名：出品者
 - メールアドレス：seller@example.com
