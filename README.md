@@ -24,6 +24,7 @@ Laravel環境構築
 	 - .envの最後尾に`STRIPE_KEY=`と`STRIPE_SECRET=`を追加してキーを設定してください。
 5. `$ php artisan key:generate`
 6. `$ php artisan migrate --seed`
+7. `$ php artisan storage:link`
 
 ## 機能確認用ユーザー
 - ユーザー名：出品者
