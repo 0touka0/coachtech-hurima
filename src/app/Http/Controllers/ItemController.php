@@ -81,11 +81,11 @@ class ItemController extends Controller
     private function getMylistItems($userId, $keyword = null)
     {
         $query = Mylist::where('user_id', $userId)
-                       ->where('is_favorited', 1)
-                       ->whereHas('item', function ($query) use ($userId) {
-                           $query->where('seller_id', '!=', $userId); // 自分の出品商品を除外
-                       })
-                       ->with('item');
+                        ->where('is_favorited', 1)
+                        ->whereHas('item', function ($query) use ($userId) {
+                            $query->where('seller_id', '!=', $userId); // 自分の出品商品を除外
+                        })
+                        ->with('item');
 
         if ($keyword) {
             $query->whereHas('item', function ($query) use ($keyword) {

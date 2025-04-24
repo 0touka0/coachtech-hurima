@@ -94,3 +94,11 @@ Stripeの決済ページから「戻る」ボタンを使用して移動した�
 - プロフィール編集画面 : http://localhost/mypage/profile
 - mailhog    : http://localhost:8025
 - phpMyAdmin : http://localhost:8080
+
+## 機能一覧
+- ユーザー登録・ログイン（Fortify・メール認証対応）
+- 商品の閲覧・検索・詳細表示
+- 商品への「いいね」・コメント機能
+- 商品の購入（Stripe決済）・配送先変更機能
+- プロフィール編集・画像アップロード
+- 商品の出品（カテゴリ複数選択・画像対応）
